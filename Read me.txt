@@ -1,0 +1,43 @@
+///Ace Combat Zero: The Belkan War - BGMPAC scripts
+=================================================== by death_the_d0g
+
+About:
+------
+These scripts allows to unpack/repack the BGM.PAC file found in ACZ.
+
+
+Requirements:
+-------------
+- Have Python version 3.8.5 or newer installed in your computer.
+
+- BGM.PAC file: 
+You will need to extract it from your NTSC-US ISO of Ace Combat Zero: The Belkan War. You can find it inside the STREAM folder.
+
+
+Usage:
+------
+In a folder place both "ACZ BGMPAC" scripts and both BGM.PAC and BGM.TBL files together then and run the script you need to use. 
+
+Extraction:
+Run the "ACZ BGMPACK unpacker" to extract the contents of the BGM.PAC archive. The script will create a folder named "BGM" then it will dump the files found inside the PAC file there. Once the process is complete both the original PAC and TBL files will be deleted.
+
+Repacking:
+Run the "ACZ BGMPACK repacker" to merge the contents inside the "BGM" folder into a new "BGM.PAC" file. Once the process is complete besides the "BGM.PAC" file the script will also create the "0000.dat" and "BGM.TBL" files, which are necessary for the game to read our custom music.
+
+
+Notes:
+------
+These scripts will NOT work with modified PAC files, so make sure you make a backup of any BGM.PAC/BGM folder that contains custom music.
+
+Do NOT touch the BGM_MISC and BGM_TBL files as they are necessary for the process.
+
+
+Special Thanks:
+---------------
+BelkanLoyalist (@ Twitter and ModDB) for testing.
+
+
+Contact:
+--------
+death_the_d0g @ Twitter and ModDB
+Charles Charleston @ Youtube
