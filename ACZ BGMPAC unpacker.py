@@ -77,7 +77,8 @@ def extraction(tbl_file, pac_file):
         data = pac_file.read(f_size)
         pac_file.seek((offset_list[val] + 52), 0)
         tag_str = pac_file.read(64)
-        s = tag_str.decode('UTF-8')
+        #s = tag_str.decode('UTF-8')    #This is the problem. The tags cant be decoded with UTF-8, so...
+        s = 'aaa'   #I just pushed it off the way!
         d = s.replace("\x00", "")
         a = d.replace(".wav", "")
         aif = a.replace(".aif", "")
