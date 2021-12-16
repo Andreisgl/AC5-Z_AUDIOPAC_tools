@@ -58,15 +58,22 @@ def extraction(tbl_file, pac_file):
     val = 0
     val2 = 1
     f_n = 0
-    f_offset = 4
+    f_offset = 0
     offset_list = []
-    tbl_file.seek(0, 0)
-    #tbl_nof = int.from_bytes(tbl_file.read(4), byteorder = "little")    #First byte from BGM_TBL.acd is the number of files present.
-    tbl_nof = 1 #Disable parser loop for easier experimentation and extraction
+    pac_file.seek(0, 0)
+    tbl_nof = os.path.getsize('BGM.pac') #int.from_bytes(tbl_file.read(4), byteorder = "little")    #First byte from BGM_TBL.acd is the number of files present.
+    
+    #tbl_nof = 1 #Disable parser loop for easier experimentation and extraction
 
     for f in range(tbl_nof):       #File parser
-        tbl_file.seek(f_offset, 0)
-        offset_list.append(int.from_bytes(tbl_file.read(4), byteorder = "little"))
+        pac_file.seek(f_offset, 0)
+
+        readBuffer = pac_file.read(4)
+        offset_list.append(int.from_bytes(readBuffer, byteorder = "little"))
+
+        if readBuffer == b'NPSF':
+            print('AAA')
+        
         f_offset = f_offset + 4
     
     last_off = pac_file.seek(0, os.SEEK_END)
