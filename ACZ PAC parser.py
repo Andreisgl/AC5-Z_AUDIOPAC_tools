@@ -69,15 +69,16 @@ def extraction(tbl_file, pac_file):
         pac_file.seek(f_offset, 0)
 
         readBuffer = pac_file.read(4)
-        offset_list.append(int.from_bytes(readBuffer, byteorder = "little"))
+        
 
         if readBuffer == b'NPSF':
+            offset_list.append(f)
             print('AAA')
+                            
         
         f_offset = f_offset + 4
     
-    last_off = pac_file.seek(0, os.SEEK_END)
-    offset_list.append(last_off)
+    #last_off = pac_file.seek(0, os.SEEK_END)
     for f in range(tbl_nof):
         pac_file.seek(offset_list[val], 0)
         f_size = (offset_list[val2]) - (offset_list[val])
