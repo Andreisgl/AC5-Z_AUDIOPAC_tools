@@ -1,8 +1,5 @@
-##ACZ BGM.APC unpacker by death_the_d0g (death_the_d0g @ Twitter)
-##
-##Further expansion and experimentation by Andrei Segal (Andreisgl @ Github)
+##ACZ BGM.APC parser by by Andrei Segal (Andreisgl @ Github)
 ##===============================================================
-##TODO: clean this sorry mess of code.
 
 import os
 import shutil
