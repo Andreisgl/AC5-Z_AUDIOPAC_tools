@@ -64,7 +64,7 @@ def extraction(tbl_file, pac_file):
     f_offset = 4
     offset_list = []
     tbl_file.seek(0, 0)
-    tbl_nof = int.from_bytes(tbl_file.read(4), byteorder = "little")
+    tbl_nof = int.from_bytes(tbl_file.read(4), byteorder = "little")    #First byte from BGM_TBL.acd is the number of files present.
     for f in range(tbl_nof):
         tbl_file.seek(f_offset, 0)
         offset_list.append(int.from_bytes(tbl_file.read(4), byteorder = "little"))
