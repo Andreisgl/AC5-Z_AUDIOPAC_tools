@@ -75,11 +75,13 @@ def extraction(tbl_file, pac_file):
 
         if readBuffer == b'NPSF':
             offset_list.append(f)
-            print('AAA')
+            #print('AAA')
                             
         
         f_offset = f_offset + 4
 
+    last_off = tbl_file.seek(0, os.SEEK_END)
+    offset_list.append(last_off)
 #   ## CRIAR ARQUIVO AQUI. DEVE CONTER OS DADO DA LISTA 'offset_list'
 
     tbl_file = open("RADIO_TBL.acd", "wb")
