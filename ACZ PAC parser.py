@@ -53,6 +53,8 @@ def extraction(tbl_file, pac_file):
 
     os.mkdir("BGM")
     
+    print("Input number of files:")
+    total_files_pac = int(input(">>> "))
     print (textwrap.fill("///INFO///: Extracting files, please wait...", width = 72))
            
     val = 0
@@ -64,6 +66,8 @@ def extraction(tbl_file, pac_file):
     tbl_nof = os.path.getsize('BGM.pac') #int.from_bytes(tbl_file.read(4), byteorder = "little")    #First byte from BGM_TBL.acd is the number of files present.
     
     #tbl_nof = 1 #Disable parser loop for easier experimentation and extraction
+
+    offset_list.append(chr(total_files_pac))
 
     for f in range(tbl_nof):       #File parser
         pac_file.seek(f_offset, 0)
@@ -77,8 +81,10 @@ def extraction(tbl_file, pac_file):
                             
         
         f_offset = f_offset + 4
-    
-    #last_off = pac_file.seek(0, os.SEEK_END)
+
+#   ## CRIAR ARQUIVO AQUI. DEVE CONTER OS DADO DA LISTA 'offset_list'
+
+    ##NÃO EXECUTAR A PARTIR DAQUI, DEIXAR BREAKPOINT NA LINHA ABAIXO
     for f in range(tbl_nof):
         pac_file.seek(offset_list[val], 0)
         f_size = (offset_list[val2]) - (offset_list[val])
