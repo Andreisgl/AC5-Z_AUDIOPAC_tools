@@ -1,6 +1,8 @@
 BGM/
 BGM.PAC
 BGM_TBL.acd
+RADIO_TBL.acd
+
 .idea/
 venv/
 *.PAC
