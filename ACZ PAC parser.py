@@ -85,7 +85,7 @@ def extraction(tbl_file, pac_file):
 #   ## CRIAR ARQUIVO AQUI. DEVE CONTER OS DADO DA LISTA 'offset_list'
 
     tbl_file = open("RADIO_TBL.acd", "wb")
-    tbl_file.write(len(offset_list).to_bytes(byteorder="little", length=4))
+    tbl_file.write((len(offset_list)-1).to_bytes(byteorder="little", length=4))
 
     for element in offset_list:
         tbl_file.write(element.to_bytes(4, byteorder="little"))
