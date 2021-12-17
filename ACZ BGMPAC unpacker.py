@@ -64,8 +64,8 @@ def extraction(tbl_file, pac_file):
     f_offset = 4
     offset_list = []
     tbl_file.seek(0, 0)
-    #tbl_nof = int.from_bytes(tbl_file.read(4), byteorder = "little")    #First byte from BGM_TBL.acd is the number of files present.
-    tbl_nof = 1 #Disable parser loop for easier experimentation and extraction
+    tbl_nof = int.from_bytes(tbl_file.read(4), byteorder = "little")    #First byte from BGM_TBL.acd is the number of files present.
+    #tbl_nof = 1 #Disable parser loop for easier experimentation and extraction
 
     for f in range(tbl_nof):       #File parser
         tbl_file.seek(f_offset, 0)
