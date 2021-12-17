@@ -53,8 +53,7 @@ def extraction(tbl_file, pac_file):
 
     os.mkdir("BGM")
     
-    print("Input number of files:")
-    total_files_pac = int(input(">>> "))
+    
     print (textwrap.fill("///INFO///: Extracting files, please wait...", width = 72))
            
     val = 0
@@ -67,7 +66,6 @@ def extraction(tbl_file, pac_file):
     
     #tbl_nof = 1 #Disable parser loop for easier experimentation and extraction
 
-    offset_list.append(chr(total_files_pac))
 
     for f in range(tbl_nof):       #File parser
         pac_file.seek(f_offset, 0)
