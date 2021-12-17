@@ -73,19 +73,27 @@ def extraction(tbl_file, pac_file):
         readBuffer = pac_file.read(4)
         
 
-        if readBuffer == b'NPSF':
+        if (readBuffer == b'NPSF'):
             offset_list.append(f)
             #print('AAA')
                             
         
         f_offset = f_offset + 4
 
-    last_off = tbl_file.seek(0, os.SEEK_END)
+    last_off = pac_file.seek(0, os.SEEK_END)
     offset_list.append(last_off)
+    #offset_list.append(0)
+
+    for f in range(len(offset_list)):
+        if f < len(offset_list)-1:
+            offset_list[f] = offset_list[f+1] - offset_list[f]
+    offset_list.pop()   #Removes last index
+
+    
 #   ## CRIAR ARQUIVO AQUI. DEVE CONTER OS DADO DA LISTA 'offset_list'
 
     tbl_file = open("RADIO_TBL.acd", "wb")
-    tbl_file.write((len(offset_list)-1).to_bytes(byteorder="little", length=4))
+    tbl_file.write( len(offset_list).to_bytes(byteorder="little", length=4))
 
     for element in offset_list:
         tbl_file.write(element.to_bytes(4, byteorder="little"))
