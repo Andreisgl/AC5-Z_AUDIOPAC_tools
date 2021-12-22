@@ -4,3 +4,8 @@ BGM_TBL.acd
 .idea/
 venv/
 *.PAC
+Lib/
+pyvenv.cfg
+Scripts/
+*.npsf
+*.acd
