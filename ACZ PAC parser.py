@@ -62,7 +62,7 @@ def extraction(tbl_file, pac_file):
     found_first_header = False
     count_bytes = 0
     with open('BGM.PAC', 'rb') as pac_file:
-        for f in range(tbl_nof):
+        for f in range(0, tbl_nof, 4):
             data = pac_file.read(4)
             if not data:
                 break
@@ -70,6 +70,7 @@ def extraction(tbl_file, pac_file):
                 offset_list.append(f)
 
                 print('AAA')
+            #f_offset = f_offset + 4
         # offset_list.append(tbl_nof - offset_list[len(offset_list) - 1])
 
     ''''for f in range(tbl_nof):  # File parser
