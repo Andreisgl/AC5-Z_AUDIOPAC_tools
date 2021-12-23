@@ -82,7 +82,7 @@ def extraction(tbl_file, pac_file):
         tag_str = pac_file.read(64)
 
         try:        #Now each error will be displayed, but the code will go on!!!
-            s = ('AAA')    #This is the problem.
+            s = tag_str.decode('UTF-8')    #This is the problem.
         except:
             print("Tag decoding error")
 
