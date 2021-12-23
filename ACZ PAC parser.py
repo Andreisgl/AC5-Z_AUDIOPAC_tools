@@ -66,16 +66,11 @@ def extraction(tbl_file, pac_file):
             data = pac_file.read(4)
             if not data:
                 break
-            if data == b"NPSF":
-                if not found_first_header:
-                    found_first_header = True
-                else:
-                    if len(offset_list) == 0:
-                        offset_list.append(f)
-                    else:
-                        offset_list.append(f - offset_list[len(offset_list) - 1])
+            if data == b'NPSF':
+                offset_list.append(f)
+
                 print('AAA')
-        offset_list.append(tbl_nof - offset_list[len(offset_list) - 1])
+        # offset_list.append(tbl_nof - offset_list[len(offset_list) - 1])
 
     ''''for f in range(tbl_nof):  # File parser
         pac_file.seek(f_offset, 0)
