@@ -103,6 +103,6 @@ new.seek(72176, 0)
 new.write(x)
 new.close()
 file_data.close()
-os.remove("temp.dat")
+#os.remove("temp.dat")  # Keep file for analysis
 exit()
 
