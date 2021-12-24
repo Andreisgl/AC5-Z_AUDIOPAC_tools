@@ -1,14 +1,13 @@
+# Tool Specific files and directories:
 BGM/
-#BGM.PAC
-#BGM_TBL.acd
-#BGM_MISC.acd
-#RADIO_TBL.acd
+*.PAC
+*.npsf
+*.acd
+
+# Others:
 
 .idea/
 venv/
-*.PAC
 Lib/
 pyvenv.cfg
 Scripts/
-*.npsf
-*.acd
