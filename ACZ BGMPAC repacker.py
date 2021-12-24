@@ -29,7 +29,7 @@ except FileNotFoundError as x:
     else:
         exit(0)
 
-if true_nof != 317:
+if 0: #true_nof != 317: #Disable file checking for debbuging purposes
     print(textwrap.fill("///ERROR///: The amount of NPSF files in the BGM folder is different than 317.", width = 72))
     print(textwrap.fill("///INFO///: Make sure the BGM folder has this exact amount of NPSF files because this script won't work otherwise.", width = 72))
     a = input("///INPUT///: Press any key to exit...")
