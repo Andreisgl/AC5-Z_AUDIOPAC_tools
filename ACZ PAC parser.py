@@ -8,7 +8,7 @@ import shutil
 import textwrap
 
 ORIGINAL_FILE_NAME = "BGM.PAC" # Change this for fast debugging
-RESULTING_FILE_NAME = "RADIO_TBL.acd"
+RESULTING_FILE_NAME = "BGM_TBL.acd"
 
 def write_tbl_from_pac():
     if os.path.exists("BGM"):
