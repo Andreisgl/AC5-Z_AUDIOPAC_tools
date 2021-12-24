@@ -1,5 +1,6 @@
 ##ACZ BGM.APC parser by by Andrei Segal (Andreisgl @ Github)
 ##Aid by Luis Filipe Sales (luisfilipels @ GitHub)
+## Adapted from unpacker by death_the_d0g (death_the_d0g @ Twitter)
 ##===============================================================
 
 import os
@@ -18,17 +19,15 @@ def write_tbl_from_pac():
     print(textwrap.fill("///INFO///: Extracting files, please wait...", width=72))
 
     offset_list = []
-    tbl_nof = os.path.getsize(ORIGINAL_FILE_NAME)
+    tbl_size = os.path.getsize(ORIGINAL_FILE_NAME)
 
     with open(ORIGINAL_FILE_NAME, 'rb') as pac_file:
-        for f in range(0, tbl_nof, 4):
+        for bytes_offset in range(0, tbl_size, 4):
             data = pac_file.read(4)
             if not data:
                 break
             if data == b'NPSF':
-                offset_list.append(f)
-
-                print('AAA')
+                offset_list.append(bytes_offset)
 
     with open(RESULTING_FILE_NAME, "wb") as tbl_file:
         tbl_file.write(len(offset_list).to_bytes(byteorder="little", length=4))
