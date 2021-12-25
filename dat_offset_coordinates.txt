@@ -1,0 +1,11 @@
+ACZ 0001.dat radio offset TBL:
+	radio TBL start 0001.dat: 5060
+	radio TBL end 0001.dat: A04f
+
+AC5 0000.dat BGM offset TBL
+	BGM TBL start 0000.dat: 0xB430
+	BGM TBL end 0000.dat: 0xBA9f
+
+AC5 0000.dat RADIOEE offset TBL
+	RADIOEE TBL start 0000.dat: 0x17520
+	RADIOEE TBL end 0000.dat: 0x22F87
