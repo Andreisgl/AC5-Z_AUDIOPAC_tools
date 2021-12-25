@@ -83,12 +83,14 @@ def extraction(tbl_file, pac_file):
         tag_str = pac_file.read(64)
 
         try:        #Now each error will be displayed, but the code will go on!!!
-            s = tag_str.decode('UTF-8')    #This is the problem.
+            s = tag_str.decode('UTF-8', errors ='replace')    #This is the problem.
         except:
             print("Tag decoding error")
 
+
         d = s.replace("\x00", "")
-        a = d.replace(".wav", "")
+        wut = d.replace("�", "")
+        a = wut.replace(".wav", "")
         aif = a.replace(".aif", "")
         fname = "BGM//" + str(f_n).zfill(4) + "_" + aif + ".npsf"
         file = open(fname, "wb")    #There is an 'invalid argument' going on here.
