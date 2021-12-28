@@ -5,25 +5,6 @@ import os
 import subprocess
 
 
-
-## Argument list for MFAudio, with indexes for the lists used in this code
-#0 -  /IFnnnnn	Input frequency
-#1 -  /ICn	Input channels
-#2 -  /IIxxxx	Input interleave (hex)
-#3 -  /IHxxxx	Input headerskip (hex)
-#4 -  /OTtttt	Output type (WAVU, VAGC,
-# 	            SS2U, SS2C, RAWU, RAWC)
-#5 -  /OFnnnnn	Output frequency
-#6 -  /OCn	Output channels
-#7 -  /OIxxxx	Output interleave (hex)
-#8 -  "InputFile"	Input file to play/convert
-#9 -  "OutputFile"	Output file to convert to
-
-
-
-
-
-
 manipulateMode = 0 # Mode for 'manipulateFile' function.
                         # 0: Convert only
                         # 1: Reproduce only
@@ -32,6 +13,19 @@ aczRADIOArguValues = [22050, 1, 320, 0, 'WAVU', 22050, 1, 320] # Temporary. Argu
 
 
 def manipulateFile(inputFilename, outputFilename, arguValues, mode):
+    ## Argument list for MFAudio, with indexes for the lists used in this code
+    #0 -  /IFnnnnn	Input frequency
+    #1 -  /ICn	Input channels
+    #2 -  /IIxxxx	Input interleave (hex)
+    #3 -  /IHxxxx	Input headerskip (hex)
+    #4 -  /OTtttt	Output type (WAVU, VAGC,
+    # 	            SS2U, SS2C, RAWU, RAWC)
+    #5 -  /OFnnnnn	Output frequency
+    #6 -  /OCn	Output channels
+    #7 -  /OIxxxx	Output interleave (hex)
+    #8 -  "InputFile"	Input file to play/convert
+    #9 -  "OutputFile"	Output file to convert to
+
     numArguments = 10
     exeFilename = 'MFAudio.exe'
 
