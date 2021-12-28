@@ -9,14 +9,22 @@ import subprocess
 
 
 manipulateMode = 0 # Mode for 'manipulateFile' function.
-                        # 0: Convert only
-                        # 1: Reproduce only
+                        # 0: Convert audio
+                        # 1: Reproduce audio
 aczRADIOArguValues = [22050, 1, 320, 0, 'WAVU', 22050, 1, 320] # Temporary. Argument value set for ACZ RADIOUSA files.
 
 
 
 def manipulateFile(inputFilename, outputFilename, arguValues, mode):
-    ## Argument list for MFAudio, with indexes for the lists used in this code
+    # Parameter list for function:
+        # inputFilename - Name of file to be read.
+        # outputFilename - Name of resulting file. Mandatory, but only really used if convert mode is selected ('mode' == 0).
+        # arguValues - List of the values for the MFAudio arguments, minus input and output filenames, described below. Contais 8 indexes
+        # mode - Selects function mode.
+            # mode == 0: Convert audio
+            # mode == 1: Reproduce audio
+
+    # Argument list for MFAudio, with indexes for the lists used in this code
     #0 -  /IFnnnnn	Input frequency
     #1 -  /ICn	Input channels
     #2 -  /IIxxxx	Input interleave (hex)
