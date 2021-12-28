@@ -5,7 +5,12 @@
     # MFAudio
 
 import os
+import shutil
 import subprocess
+
+actionFolder = 'BGM'
+metadataFolder = 'orgMeta'
+mainMetadataFile = 'mainMeta.txt'
 
 
 manipulateMode = 0 # Mode for 'manipulateFile' function.
@@ -66,6 +71,14 @@ def manipulateFile(inputFilename, outputFilename, arguValues, mode):
     subprocess.run(batFilename)
     os.remove(batFilename)
 
+if os.path.exists(actionFolder) == False: # Check if the folder to be accessed exists. If not, the program quits.
+    exit(0)
+
+if os.path.exists(actionFolder) == False: # Check if the folder to be accessed exists. If not, the program quits.
+    os.mkdir(metadataFolder)
+
+with open(mainMetadataFile, 'w') as metaFile:
+    metaFile.write('lol')
 
 
-manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
+#manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
