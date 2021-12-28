@@ -1,9 +1,11 @@
-# Tool Specific files and directories:
+# Tool Specific files, directories and extensions:
 BGM/
 *.PAC
 *.npsf
 *.acd
 *.dat
+*.wav
+*.exe
 
 # Others:
 
