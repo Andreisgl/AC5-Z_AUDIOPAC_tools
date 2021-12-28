@@ -81,4 +81,4 @@ with open(mainMetadataFile, 'w') as metaFile:
     metaFile.write('lol')
 
 
-#manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
+manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
