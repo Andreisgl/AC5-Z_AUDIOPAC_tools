@@ -37,7 +37,6 @@ def manipulateFile(inputFilename, outputFilename, arguValues, mode):
     #8 -  "InputFile"	Input file to play/convert
     #9 -  "OutputFile"	Output file to convert to
 
-    numArguments = 10
     exeFilename = 'MFAudio.exe'
 
     batFilename = 'temp.bat' # Temporary .bat file to execute MFAudio.exe (It only worked when I did this...)
