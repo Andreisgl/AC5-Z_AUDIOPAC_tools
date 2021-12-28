@@ -1,6 +1,9 @@
 ## AC Audio File Organizer - by Andreisgl @ Github
 # Manipulates the folder with audio files in order to organize each file to aid editing.
 
+# Dependencies:
+    # MFAudio
+
 import os
 import subprocess
 
