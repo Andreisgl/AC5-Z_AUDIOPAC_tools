@@ -46,6 +46,5 @@ for i in range(len(ARGU)):
 argumentBuffer = argumentBuffer + '"' + inputFilename + '"' + ' ' + '"' + outputFilename + '"'
 
 
-#print("lol")
 subprocess.run(["MFAudio.exe", argumentBuffer], shell=True)
 #subprocess.run( ["MFAudio.exe", '/IF22050 /IC1 /II320 /IH0 /OTWAVU /OF22050 /OC1 /OI320', '"lol.npsf"', '"lol.wav"'], shell=True )
