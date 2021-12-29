@@ -101,9 +101,10 @@ if isNewProject:
                 metaFile.write('\n')
 else:
     with open(saveFolder + '/' + saveFileList) as SFL:
-        x = SFL.read()
-        ######################################################
-        fileList.append()
+        nof = int(SFL.readline().strip('\n'))
+        
+        for i in range(nof):
+            fileList.append(SFL.readline().strip('\n'))
         print("lol")
 
 
@@ -112,34 +113,40 @@ for i in range(nof):
 
 for i in range(nof):
     toExit = False
+    e = input('Press Enter to continue, or "exit" to exit...')
+    if e == 'exit':
+        toExit = True
+    if toExit == True:
+        print('Exiting...')
+        toExit = False
+        break
+        
     print('File: ' + fileList[i] + '\n' )
     fileDataList[i] = fileList[i]
 
+    npath = basedir + '/' + fileList[i]
 
-    manipulateFile(basedir + '/' + fileList[i], '', aczRADIOArguValues, 0)
+    manipulateFile(npath, '', aczRADIOArguValues, 0)
     
     for g in parameterList:
         print('Input parameter ' + g + ': ')
         x = input()
         fileDataList[i] = fileDataList[i] + ',' + g + '.' + x
-    e = input('Press Enter to continue, or "exit" to exit...')
-    if e == 'exit':
-        toExit = True
+    
 
-    if toExit == True:
-        print('Exiting...')
-        break
+    
 
 
 
-    with open(saveFolder + '/' + saveFileList, 'w') as sFL:
-        for i in range(len(fileList)):
-            w = fileList[i] + '\n'
-            sFL.write(w)
-    with open(saveFolder + '/' + saveFileDataList, 'w') as sFDL:
-        for i in range(len(fileDataList)):
-            w = fileDataList[i] + '\n'
-            sFDL.write(w)
+with open(saveFolder + '/' + saveFileList, 'w') as sFL:
+    sFL.write(str(nof) + '\n')
+    for i in range(len(fileList)):
+        w = fileList[i] + '\n'
+        sFL.write(w)
+with open(saveFolder + '/' + saveFileDataList, 'w') as sFDL:
+    for i in range(len(fileDataList)):
+        w = fileDataList[i] + '\n'
+        sFDL.write(w)
 
 
 # manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
