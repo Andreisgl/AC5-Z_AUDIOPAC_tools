@@ -83,6 +83,8 @@ if os.path.exists(basedir) == False: # Check if the folder to be accessed exists
 
 nof = len(os.listdir(basedir))
 
+parameterList = ['CHARACTER', 'MISSION', 'ACESTYLE'] # This list stores all parameters that will be used to separate files. E.g: "CHARACTER", "MISSION"...
+
 fileList = [] # List of all files on 'basedir'
 for f in os.listdir(basedir):
     fileList.append(f)
@@ -103,10 +105,15 @@ for i in range(nof):
     fileDataList.append('')
 for i in range(nof):
     print('fName: ' + fileList[i] + '\n' )
-    print('Input parameter: ')
-    x = 'PIXY' # input()
+    fileDataList[i] = fileList[i]
+    for g in parameterList:
+        print('Input parameter ' + g + ': ')
+        x = input()
+        fileDataList[i] = fileDataList[i] + '\t' + g + '.' + x
+    
+    
 
-    fileDataList[i] = fileList[i] + '\t' + x
+    
 
 
 
