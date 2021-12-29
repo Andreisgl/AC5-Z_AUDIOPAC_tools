@@ -92,7 +92,7 @@ def extraction(tbl_file, pac_file):
         wut = d.replace("�", "")
         a = wut.replace(".wav", "")
         aif = a.replace(".aif", "")
-        fname = "BGM//" + str(f_n).zfill(4) + "_" + aif + ".npsf"
+        fname = "BGM//" + str(f_n).zfill(6) + "_" + aif + ".npsf"
         file = open(fname, "wb")    #There is an 'invalid argument' going on here.
         file.write(data)
         print (f_size, fname)
