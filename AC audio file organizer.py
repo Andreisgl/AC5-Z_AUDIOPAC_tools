@@ -74,7 +74,7 @@ def manipulateFile(inputFilename, outputFilename, arguValues, mode):
 if os.path.exists(basedir) == False: # Check if the folder to be accessed exists. If not, the program quits.
     exit(0)
 
-if os.path.exists(basedir) == False: # Check if the folder to be accessed exists. If not, the creates one.
+if os.path.exists(metadataFolder) == False: # Check if the folder to be accessed exists. If not, the creates one.
     os.mkdir(metadataFolder)
 
 
@@ -84,6 +84,8 @@ if os.path.exists(basedir) == False: # Check if the folder to be accessed exists
 nof = len(os.listdir(basedir))
 
 parameterList = ['CHARACTER', 'MISSION', 'ACESTYLE'] # This list stores all parameters that will be used to separate files. E.g: "CHARACTER", "MISSION"...
+
+# isNewFile = False # If this is a new savefile, regenerate list. If not, retrieve saved files.
 
 fileList = [] # List of all files on 'basedir'
 for f in os.listdir(basedir):
@@ -95,23 +97,39 @@ with open(metadataFolder + '/' + mainMetadataFile, 'w') as metaFile: # Store al 
         if i < nof - 1:
             metaFile.write('\n')
 
-#with open(metadataFolder + '/' + mainMetadataFile, 'r') as metaFile: # Read all filenames from file
-#    novaLista = []
-#    for i in range(nof):
-#        novaLista.append(metaFile.readline().rstrip()  )
 
 fileDataList = []
 for i in range(nof):
     fileDataList.append('')
 for i in range(nof):
-    print('fName: ' + fileList[i] + '\n' )
+    toExit = False
+    print('File: ' + fileList[i] + '\n' )
     fileDataList[i] = fileList[i]
     for g in parameterList:
         print('Input parameter ' + g + ': ')
         x = input()
-        fileDataList[i] = fileDataList[i] + '\t' + g + '.' + x
-    
-    
+        if x == 'exit':
+            toExit = True
+            break
+        fileDataList[i] = fileDataList[i] + ',' + g + '.' + x
+    if toExit == True:
+        print('Exiting...')
+        break
+
+saveFileList = 'FL.txt' # File that stores the list 'FileList' to resume work later
+saveFileDataList = 'FDL.txt' # File that stores the list 'FileDataList' to resume work later
+
+with open(metadataFolder + '/' + saveFileList, 'w') as sFL:
+    for i in range(len(fileList)):
+        w = fileList[i] + '\n'
+        sFL.write(w)
+with open(metadataFolder + '/' + saveFileDataList, 'w') as sFDL:
+    for i in range(len(fileDataList)):
+        w = fileDataList[i] + '\n'
+        sFDL.write(w)
+
+
+
 
     
 
