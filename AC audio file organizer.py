@@ -124,7 +124,7 @@ for i in range(nof):
     print('File: ' + fileList[i] + '\n' )
     fileDataList[i] = fileList[i]
 
-    npath = basedir + '/' + fileList[i]
+    npath = 'BGM/' + fileList[i]
 
     manipulateFile(npath, '', aczRADIOArguValues, 0)
     
