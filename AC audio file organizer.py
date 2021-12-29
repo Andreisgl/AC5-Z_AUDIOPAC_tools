@@ -109,10 +109,15 @@ else:
 
 for i in range(nof):
     fileDataList.append('')
+
 for i in range(nof):
     toExit = False
     print('File: ' + fileList[i] + '\n' )
     fileDataList[i] = fileList[i]
+
+
+    manipulateFile(basedir + '/' + fileList[i], '', aczRADIOArguValues, 0)
+    
     for g in parameterList:
         print('Input parameter ' + g + ': ')
         x = input()
