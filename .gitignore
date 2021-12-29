@@ -7,6 +7,7 @@ BGM/
 *.wav
 *.exe
 
+save1/
 # Others:
 
 .idea/
