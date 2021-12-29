@@ -127,23 +127,14 @@ for i in range(nof):
 
 
 
-with open(saveFolder + '/' + saveFileList, 'w') as sFL:
-    for i in range(len(fileList)):
-        w = fileList[i] + '\n'
-        sFL.write(w)
-with open(saveFolder + '/' + saveFileDataList, 'w') as sFDL:
-    for i in range(len(fileDataList)):
-        w = fileDataList[i] + '\n'
-        sFDL.write(w)
+    with open(saveFolder + '/' + saveFileList, 'w') as sFL:
+        for i in range(len(fileList)):
+            w = fileList[i] + '\n'
+            sFL.write(w)
+    with open(saveFolder + '/' + saveFileDataList, 'w') as sFDL:
+        for i in range(len(fileDataList)):
+            w = fileDataList[i] + '\n'
+            sFDL.write(w)
 
 
-
-
-    
-
-
-
-
-
-print('lol')
 # manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
