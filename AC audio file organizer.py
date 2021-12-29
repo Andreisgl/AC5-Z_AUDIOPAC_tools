@@ -12,6 +12,7 @@ basedir = 'BGM'
 metadataFolder = 'orgMeta'
 mainMetadataFile = 'mainMeta.txt' #Contains the names of all audio files to be worked with
 
+saveFolder = 'save1'
 
 manipulateMode = 0 # Mode for 'manipulateFile' function.
                         # 0: Convert audio
@@ -85,7 +86,7 @@ nof = len(os.listdir(basedir))
 
 parameterList = ['CHARACTER', 'MISSION', 'ACESTYLE'] # This list stores all parameters that will be used to separate files. E.g: "CHARACTER", "MISSION"...
 
-# isNewFile = False # If this is a new savefile, regenerate list. If not, retrieve saved files.
+
 
 fileList = [] # List of all files on 'basedir'
 for f in os.listdir(basedir):
@@ -119,11 +120,11 @@ for i in range(nof):
 saveFileList = 'FL.txt' # File that stores the list 'FileList' to resume work later
 saveFileDataList = 'FDL.txt' # File that stores the list 'FileDataList' to resume work later
 
-with open(metadataFolder + '/' + saveFileList, 'w') as sFL:
+with open(saveFolder + '/' + saveFileList, 'w') as sFL:
     for i in range(len(fileList)):
         w = fileList[i] + '\n'
         sFL.write(w)
-with open(metadataFolder + '/' + saveFileDataList, 'w') as sFDL:
+with open(saveFolder + '/' + saveFileDataList, 'w') as sFDL:
     for i in range(len(fileDataList)):
         w = fileDataList[i] + '\n'
         sFDL.write(w)
