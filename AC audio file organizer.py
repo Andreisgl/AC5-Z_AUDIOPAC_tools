@@ -8,9 +8,9 @@ import os
 import shutil
 import subprocess
 
-actionFolder = 'BGM'
+basedir = 'BGM'
 metadataFolder = 'orgMeta'
-mainMetadataFile = 'mainMeta.txt'
+mainMetadataFile = 'mainMeta.txt' #Contains the names of all audio files to be worked with
 
 
 manipulateMode = 0 # Mode for 'manipulateFile' function.
@@ -71,14 +71,29 @@ def manipulateFile(inputFilename, outputFilename, arguValues, mode):
     subprocess.run(batFilename)
     os.remove(batFilename)
 
-if os.path.exists(actionFolder) == False: # Check if the folder to be accessed exists. If not, the program quits.
+if os.path.exists(basedir) == False: # Check if the folder to be accessed exists. If not, the program quits.
     exit(0)
 
-if os.path.exists(actionFolder) == False: # Check if the folder to be accessed exists. If not, the program quits.
+if os.path.exists(basedir) == False: # Check if the folder to be accessed exists. If not, the creates one.
     os.mkdir(metadataFolder)
 
-with open(mainMetadataFile, 'w') as metaFile:
-    metaFile.write('lol')
 
 
-manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
+
+
+nof = len(os.listdir(basedir))
+
+fileList = [] # List of all files on 'basedir'
+for f in os.listdir(basedir):
+    fileList.append(f)
+
+with open(metadataFolder + '/' + mainMetadataFile, 'w') as metaFile:
+    for i in range(nof):
+        metaFile.write(fileList[i])
+        if i < nof - 1:
+            metaFile.write('\n')
+
+
+
+print('lol')
+# manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
