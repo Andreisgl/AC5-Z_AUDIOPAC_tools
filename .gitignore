@@ -6,6 +6,7 @@ BGM/
 *.dat
 *.wav
 *.exe
+*.bat
 
 save1/
 # Others:
