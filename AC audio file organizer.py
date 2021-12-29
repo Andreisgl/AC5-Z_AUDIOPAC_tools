@@ -87,11 +87,28 @@ fileList = [] # List of all files on 'basedir'
 for f in os.listdir(basedir):
     fileList.append(f)
 
-with open(metadataFolder + '/' + mainMetadataFile, 'w') as metaFile:
+with open(metadataFolder + '/' + mainMetadataFile, 'w') as metaFile: # Store al filenames in file
     for i in range(nof):
         metaFile.write(fileList[i])
         if i < nof - 1:
             metaFile.write('\n')
+
+#with open(metadataFolder + '/' + mainMetadataFile, 'r') as metaFile: # Read all filenames from file
+#    novaLista = []
+#    for i in range(nof):
+#        novaLista.append(metaFile.readline().rstrip()  )
+
+fileDataList = []
+for i in range(nof):
+    fileDataList.append('')
+for i in range(nof):
+    print('fName: ' + fileList[i] + '\n' )
+    print('Input parameter: ')
+    x = 'PIXY' # input()
+
+    fileDataList[i] = fileList[i] + '\t' + x
+
+
 
 
 
