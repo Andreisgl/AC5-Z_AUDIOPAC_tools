@@ -1,4 +1,5 @@
-## AC Audio File Organizer - by Andreisgl @ Github
+## AC Audio File Organizer - by Andreisgl @ GitHub
+# Refactoring by luisfilipels @ GitHub
 # Manipulates the folder with audio files in order to organize each file to aid editing.
 
 # Dependencies:
@@ -7,21 +8,27 @@
 import os
 import shutil
 import subprocess
+from enum import Enum
 
-basedir = 'BGM'
-metadataFolder = 'orgMeta'
-mainMetadataFile = 'mainMeta.txt' #Contains the names of all audio files to be worked with
 
-saveFolder = 'save1'
+class ManipulateMode(Enum):
+    CONVERT = 0
+    REPRODUCE = 1
 
-manipulateMode = 0 # Mode for 'manipulateFile' function.
-                        # 0: Convert audio
-                        # 1: Reproduce audio
-aczRADIOArguValues = [22050, 1, 320, 0, 'WAVU', 22050, 1, 320] # Temporary. Argument value set for ACZ RADIOUSA files.
 
-isNewProject = True # If this is a new project, create new lists. If not, retrieve saved files.
+BASE_DIRECTORY = 'BGM'
+METADATA_FOLDER = 'orgMeta'
+MAIN_METADATA_FILE = 'mainMeta.txt'  # Contains the names of all audio files to be worked with
+SAVE_FOLDER = 'save1'
 
-def manipulateFile(inputFilename, outputFilename, arguValues, mode):
+MANIPULATE_MODE = ManipulateMode.CONVERT  # Mode for 'manipulateFile' function.
+
+ACZ_RADIO_ARG_VALUES = [22050, 1, 320, 0, 'WAVU', 22050, 1, 320]  # Temporary. Argument value set for ACZ RADIOUSA files.
+PARAMETER_LIST = ['CHARACTER', 'MISSION', 'ACESTYLE']  # This list stores all parameters that will be used to separate files. E.g: "CHARACTER", "MISSION"...
+
+IS_NEW_PROJECT = True  # If this is a new project, create new lists. If not, retrieve saved files.
+
+def manipulate_file(input_filename, output_filename, arg_values, mode):
     # Parameter list for function:
         # inputFilename - Name of file to be read.
         # outputFilename - Name of resulting file. Mandatory, but only really used if convert mode is selected ('mode' == 0).
@@ -31,121 +38,110 @@ def manipulateFile(inputFilename, outputFilename, arguValues, mode):
             # mode == 1: Reproduce audio
 
     # Argument list for MFAudio, with indexes for the lists used in this code
-        #0 -  /IFnnnnn	Input frequency
-        #1 -  /ICn	Input channels
-        #2 -  /IIxxxx	Input interleave (hex)
-        #3 -  /IHxxxx	Input headerskip (hex)
-        #4 -  /OTtttt	Output type (WAVU, VAGC,
+        # 0 -  /IFnnnnn	Input frequency
+        # 1 -  /ICn	Input channels
+        # 2 -  /IIxxxx	Input interleave (hex)
+        # 3 -  /IHxxxx	Input headerskip (hex)
+        # 4 -  /OTtttt	Output type (WAVU, VAGC,
         # 	            SS2U, SS2C, RAWU, RAWC)
-        #5 -  /OFnnnnn	Output frequency
-        #6 -  /OCn	Output channels
-        #7 -  /OIxxxx	Output interleave (hex)
-        #8 -  "InputFile"	Input file to play/convert
-        #9 -  "OutputFile"	Output file to convert to
+        # 5 -  /OFnnnnn	Output frequency
+        # 6 -  /OCn	Output channels
+        # 7 -  /OIxxxx	Output interleave (hex)
+        # 8 -  "InputFile"	Input file to play/convert
+        # 9 -  "OutputFile"	Output file to convert to
 
-    exeFilename = 'MFAudio.exe'
+    exe_filename = 'MFAudio.exe'
 
-    batFilename = 'temp.bat' # Temporary .bat file to execute MFAudio.exe (It only worked when I did this...)
+    bat_filename = 'temp.bat' # Temporary .bat file to execute MFAudio.exe (It only worked when I did this...)
 
-    ARGU = ['/IF', '/IC', '/II', '/IH', '/OT', '/OF', '/OC', '/OI'] #Contains the core arguments.
-    currentArguValue = [] #The current set of argument VALUES currently being used.
-    concatArgu = [] #Concatenated Arguments and values
-    argumentBuffer = ''
-    currentArguValue = arguValues
+    args = ['/IF', '/IC', '/II', '/IH', '/OT', '/OF', '/OC', '/OI'] #Contains the core arguments.
+    current_arg_value = [] #The current set of argument VALUES currently being used.
+    concat_args = [] #Concatenated Arguments and values
+    argument_buffer = ''
+    current_arg_value = arg_values
+
+    for i in range(len(args)):  # Concatenates each core parameter with it's value individually, by list index.
+        concat_args.append(args[i] + str(current_arg_value[i]))
+
+    for i in range(len(args)):  # Creates string based on 'concatArgu' list contents.
+        argument_buffer = argument_buffer + concat_args[i] + ' '
+
+    argument_buffer = exe_filename + ' ' + argument_buffer + '"' + input_filename + '"' # Adds a input filename to 'argumentBuffer' string and...
+
+    if mode == 0:  # ... if the mode is "Convert (0)", add output filename as well.
+        argument_buffer = argument_buffer + ' ' + '"' + output_filename + '"'
+
+    with open(bat_filename, 'w') as bat_file:
+        bat_file.write(argument_buffer)
+
+    subprocess.run(bat_filename)
+    os.remove(bat_filename)
 
 
-    for i in range(len(ARGU)): # Concatenates each core parameter with it's value individually, by list index.
-        concatArgu.append( ARGU[i] + str(currentArguValue[i]) )
-
-    for i in range(len(ARGU)): # Creates string based on 'concatArgu' list contents.
-        argumentBuffer = argumentBuffer + concatArgu[i] + ' '
-
-    argumentBuffer = exeFilename + ' ' + argumentBuffer + '"' + inputFilename + '"' # Adsa input filename to 'argumentBuffer' string and...
-    
-
-    if mode == 0: # ... if the mode is "Convert (0)", add output filename as well.
-        argumentBuffer = argumentBuffer + ' ' + '"' + outputFilename + '"'
-    
-    with open(batFilename, 'w') as batFile:
-        batFile.write(argumentBuffer)
-        
-    subprocess.run(batFilename)
-    os.remove(batFilename)
-
-if os.path.exists(basedir) == False: # Check if the folder to be accessed exists. If not, the program quits.
+if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exists. If not, the program quits.
     exit(0)
 
+number_of_files = len(os.listdir(BASE_DIRECTORY))
 
+file_list = []  # List of all filenames in 'basedir'.
+file_data_list = []  # List of filenames and their metadata, which is generated by this script.
 
+save_file_list = 'FL.txt'  # File that stores the list 'FileList' to resume work later
+save_file_data_list = 'FDL.txt'  # File that stores the list 'FileDataList' to resume work later
 
+if IS_NEW_PROJECT:
+    for f in os.listdir(BASE_DIRECTORY):
+        file_list.append(f)
 
-nof = len(os.listdir(basedir))
-
-parameterList = ['CHARACTER', 'MISSION', 'ACESTYLE'] # This list stores all parameters that will be used to separate files. E.g: "CHARACTER", "MISSION"...
-
-fileList = [] # List of all filenames in 'basedir'.
-fileDataList = [] # List of filenames and their metadata, which is generated by this script.
-
-saveFileList = 'FL.txt' # File that stores the list 'FileList' to resume work later
-saveFileDataList = 'FDL.txt' # File that stores the list 'FileDataList' to resume work later
-
-if isNewProject:
-    for f in os.listdir(basedir):
-        fileList.append(f)
-
-    with open(saveFolder + '/' + saveFileList, 'w') as metaFile: # Store all filenames in metaFile
-        metaFile.write(str(nof) + '\n')
-        for i in range(nof):
-            metaFile.write(fileList[i])
-            if i < nof - 1:
-                metaFile.write('\n')
+    with open(SAVE_FOLDER + '/' + save_file_list, 'w') as meta_file: # Store all filenames in metaFile
+        meta_file.write(str(number_of_files) + '\n')
+        for i in range(number_of_files):
+            meta_file.write(file_list[i])
+            if i < number_of_files - 1:
+                meta_file.write('\n')
 else:
-    with open(saveFolder + '/' + saveFileList) as SFL:
-        nof = int(SFL.readline().strip('\n'))
-        
-        for i in range(nof):
-            fileList.append(SFL.readline().strip('\n'))
+    with open(SAVE_FOLDER + '/' + save_file_list) as SFL:
+        number_of_files = int(SFL.readline().strip('\n'))
+
+        for i in range(number_of_files):
+            file_list.append(SFL.readline().strip('\n'))
         print("lol")
 
 
-for i in range(nof):
-    fileDataList.append('')
+for i in range(number_of_files):
+    file_data_list.append('')
 
-for i in range(nof):
-    toExit = False
+for i in range(number_of_files):
+    should_exit = False
     e = input('Press Enter to continue, or "exit" to exit...')
     if e == 'exit':
-        toExit = True
-    if toExit == True:
+        should_exit = True
+    if should_exit:
         print('Exiting...')
-        toExit = False
+        should_exit = False
         break
-        
-    print('File: ' + fileList[i] + '\n' )
-    fileDataList[i] = fileList[i]
 
-    npath = 'BGM/' + fileList[i]
+    print('File: ' + file_list[i] + '\n')
+    file_data_list[i] = file_list[i]
 
-    manipulateFile(npath, '', aczRADIOArguValues, 0)
-    
-    for g in parameterList:
+    npath = 'BGM/' + file_list[i]
+
+    manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
+
+    for g in PARAMETER_LIST:
         print('Input parameter ' + g + ': ')
         x = input()
-        fileDataList[i] = fileDataList[i] + ',' + g + '.' + x
-    
-
-    
+        file_data_list[i] = file_data_list[i] + ',' + g + '.' + x
 
 
-
-with open(saveFolder + '/' + saveFileList, 'w') as sFL:
-    sFL.write(str(nof) + '\n')
-    for i in range(len(fileList)):
-        w = fileList[i] + '\n'
+with open(SAVE_FOLDER + '/' + save_file_list, 'w') as sFL:
+    sFL.write(str(number_of_files) + '\n')
+    for i in range(len(file_list)):
+        w = file_list[i] + '\n'
         sFL.write(w)
-with open(saveFolder + '/' + saveFileDataList, 'w') as sFDL:
-    for i in range(len(fileDataList)):
-        w = fileDataList[i] + '\n'
+with open(SAVE_FOLDER + '/' + save_file_data_list, 'w') as sFDL:
+    for i in range(len(file_data_list)):
+        w = file_data_list[i] + '\n'
         sFDL.write(w)
 
 
