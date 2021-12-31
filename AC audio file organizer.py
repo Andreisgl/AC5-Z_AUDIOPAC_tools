@@ -89,6 +89,17 @@ file_data_list = []  # List of filenames and their metadata, which is generated 
 save_file_list = 'FL.txt'  # File that stores the list 'FileList' to resume work later
 save_file_data_list = 'FDL.txt'  # File that stores the list 'FileDataList' to resume work later
 
+def save_project(): # Saves current project
+    with open(SAVE_FOLDER + '/' + save_file_list, 'w') as sFL:
+        sFL.write(str(number_of_files) + '\n')
+        for i in range(len(file_list)):
+            w = file_list[i] + '\n'
+            sFL.write(w)
+    with open(SAVE_FOLDER + '/' + save_file_data_list, 'w') as sFDL:
+        for i in range(len(file_data_list)):
+            w = file_data_list[i] + '\n'
+            sFDL.write(w)
+            
 if IS_NEW_PROJECT:
     for f in os.listdir(BASE_DIRECTORY):
         file_list.append(f)
@@ -134,15 +145,6 @@ for i in range(number_of_files):
         file_data_list[i] = file_data_list[i] + ',' + g + '.' + x
 
 
-with open(SAVE_FOLDER + '/' + save_file_list, 'w') as sFL:
-    sFL.write(str(number_of_files) + '\n')
-    for i in range(len(file_list)):
-        w = file_list[i] + '\n'
-        sFL.write(w)
-with open(SAVE_FOLDER + '/' + save_file_data_list, 'w') as sFDL:
-    for i in range(len(file_data_list)):
-        w = file_data_list[i] + '\n'
-        sFDL.write(w)
 
 
 # manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
