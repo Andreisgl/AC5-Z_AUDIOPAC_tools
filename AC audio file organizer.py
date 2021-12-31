@@ -132,7 +132,7 @@ def init_project(): # Initializes project name and savefile stuff
                     meta_file.write('\n')
         
         for i in range(number_of_files):
-            file_data_list.append('\n')
+            file_data_list.append('')
     
     else:
         try:
@@ -179,7 +179,6 @@ def work_on_files():
             break
 
         print('File: ' + file_list[i] + '\n')
-        file_data_list[i] = file_list[i]
 
         npath = BASE_DIRECTORY + '/' + file_list[i]
         # manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
@@ -187,7 +186,8 @@ def work_on_files():
         for g in PARAMETER_LIST:
             print('Input parameter ' + g + ': ')
             x = input()
-            file_data_list[i] = file_data_list[i] + ',' + g + '.' + x
+            file_data_list[i] = file_data_list[i] + g + '.' + x + ','
+        file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
 
 def check_file_data_list(): # Checks 'save_file_data_list' and creates an index of files without parameters
     # Types of index values:
