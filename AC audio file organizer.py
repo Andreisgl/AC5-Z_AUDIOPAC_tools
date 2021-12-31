@@ -134,18 +134,23 @@ def init_project(): # Initializes project name and savefile stuff
         
         for i in range(number_of_files):
             file_data_list.append('\n')
-
+    
     else:
-        with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_list) as SFL:
-            number_of_files = int(SFL.readline().strip('\n'))
+        try:
+            with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_list) as SFL:
+                number_of_files = int(SFL.readline().strip('\n'))
 
-            for i in range(number_of_files):
-                file_list.append(SFL.readline().strip('\n'))
+                for i in range(number_of_files):
+                    file_list.append(SFL.readline().strip('\n'))
 
-        with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_data_list) as SFDL:
+            with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_data_list) as SFDL:
 
-            for i in range(number_of_files):
-                file_data_list.append(SFDL.readline().strip('\n'))    
+                for i in range(number_of_files):
+                    file_data_list.append(SFDL.readline().strip('\n'))
+        except FileNotFoundError:
+            print('Project not found!')
+            input('Press any key to exit...')
+            exit('Project not found')
     
 
 def save_project(): # Saves current project.
