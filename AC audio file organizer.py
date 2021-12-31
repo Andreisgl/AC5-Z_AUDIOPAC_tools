@@ -19,7 +19,7 @@ class ManipulateMode(Enum):
 BASE_DIRECTORY = 'BGM'
 METADATA_FOLDER = 'orgMeta'
 MAIN_METADATA_FILE = 'mainMeta.txt'  # Contains the names of all audio files to be worked with
-SAVE_FOLDER = 'save1'
+PROJECT_NAME = 'save1'
 
 MANIPULATE_MODE = ManipulateMode.CONVERT  # Mode for 'manipulateFile' function.
 
@@ -90,12 +90,12 @@ save_file_list = 'FL.txt'  # File that stores the list 'FileList' to resume work
 save_file_data_list = 'FDL.txt'  # File that stores the list 'FileDataList' to resume work later
 
 def save_project(): # Saves current project
-    with open(SAVE_FOLDER + '/' + save_file_list, 'w') as sFL:
+    with open(PROJECT_NAME + '/' + save_file_list, 'w') as sFL:
         sFL.write(str(number_of_files) + '\n')
         for i in range(len(file_list)):
             w = file_list[i] + '\n'
             sFL.write(w)
-    with open(SAVE_FOLDER + '/' + save_file_data_list, 'w') as sFDL:
+    with open(PROJECT_NAME + '/' + save_file_data_list, 'w') as sFDL:
         for i in range(len(file_data_list)):
             w = file_data_list[i] + '\n'
             sFDL.write(w)
@@ -104,14 +104,14 @@ if IS_NEW_PROJECT:
     for f in os.listdir(BASE_DIRECTORY):
         file_list.append(f)
 
-    with open(SAVE_FOLDER + '/' + save_file_list, 'w') as meta_file: # Store all filenames in metaFile
+    with open(PROJECT_NAME + '/' + save_file_list, 'w') as meta_file: # Store all filenames in metaFile
         meta_file.write(str(number_of_files) + '\n')
         for i in range(number_of_files):
             meta_file.write(file_list[i])
             if i < number_of_files - 1:
                 meta_file.write('\n')
 else:
-    with open(SAVE_FOLDER + '/' + save_file_list) as SFL:
+    with open(PROJECT_NAME + '/' + save_file_list) as SFL:
         number_of_files = int(SFL.readline().strip('\n'))
 
         for i in range(number_of_files):
