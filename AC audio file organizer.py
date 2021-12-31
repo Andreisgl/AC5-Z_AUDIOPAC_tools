@@ -167,6 +167,30 @@ def save_project(): # Saves current project.
     print('Saving project...')
     input('Done! Press any key to continue...')
 
+def work_on_files():
+    for i in range(number_of_files):
+        should_exit = False
+        e = input('Press Enter to continue, or "exit" to exit...')
+        if e == 'exit':
+            should_exit = True
+        if should_exit:
+            print('Exiting...')
+            should_exit = False
+            break
+
+        print('File: ' + file_list[i] + '\n')
+        file_data_list[i] = file_list[i]
+
+        npath = BASE_DIRECTORY + '/' + file_list[i]
+
+        # manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
+
+        for g in PARAMETER_LIST:
+            print('Input parameter ' + g + ': ')
+            x = input()
+            file_data_list[i] = file_data_list[i] + ',' + g + '.' + x
+
+
 if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exists. If not, the program quits.
     print('File directory not found. Press any key to exit...')
     exit('Base directory not found')
@@ -174,32 +198,11 @@ if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exi
 
 
 init_project()
+work_on_files()
 
 
 
 
-
-for i in range(number_of_files):
-    should_exit = False
-    e = input('Press Enter to continue, or "exit" to exit...')
-    if e == 'exit':
-        should_exit = True
-    if should_exit:
-        print('Exiting...')
-        should_exit = False
-        break
-
-    print('File: ' + file_list[i] + '\n')
-    file_data_list[i] = file_list[i]
-
-    npath = 'BGM/' + file_list[i]
-
-    # manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
-
-    for g in PARAMETER_LIST:
-        print('Input parameter ' + g + ': ')
-        x = input()
-        file_data_list[i] = file_data_list[i] + ',' + g + '.' + x
 
 
 save_project()
