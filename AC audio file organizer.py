@@ -120,9 +120,11 @@ save_file_list = 'FL.txt'  # File that stores the list 'FileList' to resume work
 save_file_data_list = 'FDL.txt'  # File that stores the list 'FileDataList' to resume work later
 
 init_project()
-# save_project()
 
 if IS_NEW_PROJECT:
+    if not os.path.exists(PROJECT_NAME):
+        os.mkdir(PROJECT_NAME)
+
     for f in os.listdir(BASE_DIRECTORY):
         file_list.append(f)
 
@@ -138,7 +140,12 @@ else:
 
         for i in range(number_of_files):
             file_list.append(SFL.readline().strip('\n'))
-        print("lol")
+
+    with open(PROJECT_NAME + '/' + save_file_data_list) as SFDL:
+        number_of_files = int(SFDL.readline().strip('\n'))
+
+        for i in range(number_of_files):
+            file_list.append(SFDL.readline().strip('\n'))
 
 
 for i in range(number_of_files):
