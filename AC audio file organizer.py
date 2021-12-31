@@ -99,7 +99,7 @@ def save_project(): # Saves current project
         for i in range(len(file_data_list)):
             w = file_data_list[i] + '\n'
             sFDL.write(w)
-            
+
 if IS_NEW_PROJECT:
     for f in os.listdir(BASE_DIRECTORY):
         file_list.append(f)
@@ -137,7 +137,7 @@ for i in range(number_of_files):
 
     npath = 'BGM/' + file_list[i]
 
-    manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
+    # manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
 
     for g in PARAMETER_LIST:
         print('Input parameter ' + g + ': ')
