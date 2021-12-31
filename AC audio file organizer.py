@@ -37,6 +37,7 @@ file_data_list = []  # List of filenames and their metadata, which is generated 
 save_file_list = 'FL.txt'  # File that stores the list 'FileList' to resume work later
 save_file_data_list = 'FDL.txt'  # File that stores the list 'FileDataList' to resume work later
 
+
 def manipulate_file(input_filename, output_filename, arg_values, mode):
     # Parameter list for function:
         # inputFilename - Name of file to be read.
@@ -197,6 +198,26 @@ def check_file_data_list(): # Checks 'save_file_data_list' and creates an index 
     print('check FDL')
     save_file_data_list
 
+def fdl_parameter_parser(fdl_index): # Checks a file_data_list index and parse it's data.
+    print('FDL parameter parser')
+    global PARAMETER_LIST
+    parameter_ammount = len(PARAMETER_LIST)
+    storage = []
+    str_data = ''
+    str_data = file_data_list[fdl_index]
+    for i in range(parameter_ammount): # Define size of list
+        storage.append('')
+    for i in range(parameter_ammount):
+        part_buffer = str_data.partition(',') # Separate arguments
+        storage[i] = part_buffer[0]
+        
+        storage[i] = (storage[i].partition('.'))[2] # Separate value from argument
+        str_data = part_buffer[2]
+    return storage
+
+    
+
+
 if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exists. If not, the program quits.
     print('File directory not found. Press any key to exit...')
     exit('Base directory not found')
@@ -204,6 +225,6 @@ if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exi
 
 
 init_project()
-check_file_data_list()
-work_on_files()
-save_project()
+# check_file_data_list()
+# work_on_files()
+# save_project()
