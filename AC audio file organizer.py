@@ -85,18 +85,25 @@ if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exi
 def init_project(): # Initializes project name and savefile stuff
     global IS_NEW_PROJECT
     global PROJECT_NAME
-    answer = input('Open existing project? (y/n)')
-    if answer == 'y' or answer == 'n': # If answer is valid
-        if answer =='y':
-            IS_NEW_PROJECT = False
-            PROJECT_NAME = input("Input project name: ")
+    valid_input = False
+
+    
+    while not valid_input:
+        answer = input('Open existing project? (y/n)')
+        if answer == 'y' or answer == 'n': # If answer is valid
+            if answer =='y':
+                IS_NEW_PROJECT = False
+                PROJECT_NAME = input("Input project name: ")
+                
+            else:
+                IS_NEW_PROJECT = True
+                PROJECT_NAME = input("Input NEW project name: ")
+            valid_input = True
             
-        else:
-            IS_NEW_PROJECT = True
-            PROJECT_NAME = input("Input NEW project name: ")
-        
-    else: # If answer is invalid
-        init_project()
+        else: # If answer is invalid
+            valid_input = False
+            print('Invalid Answer!')
+    
     
 
 def save_project(): # Saves current project.
