@@ -65,6 +65,9 @@ def manipulate_file(input_filename, output_filename, arg_values, mode):
 
     bat_filename = 'temp.bat' # Temporary .bat file to execute MFAudio.exe (It only worked when I did this...)
 
+    ORIGIN_PATH = './'
+    DESTINATION_PATH = BASE_DIRECTORY
+
     args = ['/IF', '/IC', '/II', '/IH', '/OT', '/OF', '/OC', '/OI'] #Contains the core arguments.
     current_arg_value = [] #The current set of argument VALUES currently being used.
     concat_args = [] #Concatenated Arguments and values
@@ -77,15 +80,18 @@ def manipulate_file(input_filename, output_filename, arg_values, mode):
     for i in range(len(args)):  # Creates string based on 'concatArgu' list contents.
         argument_buffer = argument_buffer + concat_args[i] + ' '
 
-    argument_buffer = exe_filename + ' ' + argument_buffer + '"' + input_filename + '"' # Adds a input filename to 'argumentBuffer' string and...
+    # Adds a input filename to 'argumentBuffer' string and...
+    argument_buffer ='"' + DESTINATION_PATH + '/' + exe_filename + '" ' + argument_buffer + '"' + DESTINATION_PATH + '\\'+ input_filename + '"'
 
     if mode == 0:  # ... if the mode is "Convert (0)", add output filename as well.
         argument_buffer = argument_buffer + ' ' + '"' + output_filename + '"'
 
-    with open(bat_filename, 'w') as bat_file:
+    with open(bat_filename, 'w') as bat_file: # Create .bat file
         bat_file.write(argument_buffer)
 
-    subprocess.run(bat_filename)
+    shutil.move(ORIGIN_PATH + '/' + exe_filename, DESTINATION_PATH + '/' + exe_filename)
+    subprocess.run([bat_filename])
+    shutil.move(DESTINATION_PATH + '/' + exe_filename, ORIGIN_PATH + '/' + exe_filename)
     os.remove(bat_filename)
 
 
@@ -184,8 +190,8 @@ def work_on_files():
 
             print('File: ' + file_list[i] + '\n')
 
-            npath = BASE_DIRECTORY + '/' + file_list[i]
-            # manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
+            npath = file_list[i]
+            manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
             file_data_list[i] = ''
             for g in PARAMETER_LIST:
                 print('Input parameter ' + g + ': ')
