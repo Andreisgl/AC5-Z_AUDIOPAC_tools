@@ -186,7 +186,7 @@ def work_on_files():
 
             npath = BASE_DIRECTORY + '/' + file_list[i]
             # manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
-
+            file_data_list[i] = ''
             for g in PARAMETER_LIST:
                 print('Input parameter ' + g + ': ')
                 x = input()
