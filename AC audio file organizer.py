@@ -211,6 +211,7 @@ def check_file_data_list(): # Checks 'save_file_data_list' and creates an index 
     # Types of index values:
         # 0: No parameters or incomplete.
         # 1: Fully filled in.
+    # Intended use: work_on_files() will check 'fdl_validation_index' and ignore indexes that have all complete parameters.
     global fdl_validation_index # List of all indexes in filde_data_list
     parameter_value_buffer = [] # List of values for each parameter
     parameter_validation_buffer = [] # List of validation for individual parameters
