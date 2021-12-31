@@ -189,6 +189,13 @@ def work_on_files():
             x = input()
             file_data_list[i] = file_data_list[i] + ',' + g + '.' + x
 
+def check_file_data_list(): # Checks 'save_file_data_list' and creates an index of files without parameters
+    # Types of index values:
+        # 0: No parameters.
+        # 1: Fully filled in.
+        # 2: Incomplete, for some reason.
+    print('check FDL')
+    save_file_data_list
 
 if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exists. If not, the program quits.
     print('File directory not found. Press any key to exit...')
@@ -197,5 +204,6 @@ if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exi
 
 
 init_project()
+check_file_data_list()
 work_on_files()
 save_project()
