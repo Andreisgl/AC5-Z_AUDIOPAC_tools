@@ -19,6 +19,7 @@ class ManipulateMode(Enum):
 BASE_DIRECTORY = 'BGM'
 METADATA_FOLDER = 'orgMeta'
 MAIN_METADATA_FILE = 'mainMeta.txt'  # Contains the names of all audio files to be worked with
+SAVE_FOLDER = 'Organizer Projects'
 PROJECT_NAME = ''
 
 MANIPULATE_MODE = ManipulateMode.CONVERT  # Mode for 'manipulateFile' function.
@@ -98,13 +99,15 @@ def init_project(): # Initializes project name and savefile stuff
         init_project()
     
 
-def save_project(): # Saves current project. 
-    with open(PROJECT_NAME + '/' + save_file_list, 'w') as sFL:
+def save_project(): # Saves current project.
+    global SAVE_FOLDER
+    global PROJECT_NAME
+    with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_list, 'w') as sFL:
         sFL.write(str(number_of_files) + '\n')
         for i in range(len(file_list)):
             w = file_list[i] + '\n'
             sFL.write(w)
-    with open(PROJECT_NAME + '/' + save_file_data_list, 'w') as sFDL:
+    with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_data_list, 'w') as sFDL:
         for i in range(len(file_data_list)):
             w = file_data_list[i] + '\n'
             sFDL.write(w)
@@ -122,8 +125,8 @@ save_file_data_list = 'FDL.txt'  # File that stores the list 'FileDataList' to r
 init_project()
 
 if IS_NEW_PROJECT:
-    if not os.path.exists(PROJECT_NAME):
-        os.mkdir(PROJECT_NAME)
+    if not os.path.exists(SAVE_FOLDER + '/' + PROJECT_NAME):
+        os.mkdir(SAVE_FOLDER + '/' + PROJECT_NAME)
 
     for f in os.listdir(BASE_DIRECTORY):
         file_list.append(f)
@@ -135,13 +138,13 @@ if IS_NEW_PROJECT:
             if i < number_of_files - 1:
                 meta_file.write('\n')
 else:
-    with open(PROJECT_NAME + '/' + save_file_list) as SFL:
+    with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_list) as SFL:
         number_of_files = int(SFL.readline().strip('\n'))
 
         for i in range(number_of_files):
             file_list.append(SFL.readline().strip('\n'))
 
-    with open(PROJECT_NAME + '/' + save_file_data_list) as SFDL:
+    with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_data_list) as SFDL:
         number_of_files = int(SFDL.readline().strip('\n'))
 
         for i in range(number_of_files):
