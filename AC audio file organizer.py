@@ -182,7 +182,6 @@ def work_on_files():
         file_data_list[i] = file_list[i]
 
         npath = BASE_DIRECTORY + '/' + file_list[i]
-
         # manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
 
         for g in PARAMETER_LIST:
@@ -199,12 +198,4 @@ if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exi
 
 init_project()
 work_on_files()
-
-
-
-
-
-
 save_project()
-
-# manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
