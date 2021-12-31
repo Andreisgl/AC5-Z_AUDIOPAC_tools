@@ -82,7 +82,20 @@ if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exi
     exit(0)
 
 def init_project(): # Initializes project name and savefile stuff
-    new_project = input('Open existing project or Create new project? (y/n)')
+    global IS_NEW_PROJECT
+    global PROJECT_NAME
+    answer = input('Open existing project? (y/n)')
+    if answer == 'y' or answer == 'n': # If answer is valid
+        if answer =='y':
+            IS_NEW_PROJECT = False
+            PROJECT_NAME = input("Input project name: ")
+            
+        else:
+            IS_NEW_PROJECT = True
+            PROJECT_NAME = input("Input NEW project name: ")
+        
+    else: # If answer is invalid
+        init_project()
     
 
 def save_project(): # Saves current project. 
@@ -96,6 +109,8 @@ def save_project(): # Saves current project.
             w = file_data_list[i] + '\n'
             sFDL.write(w)
 
+# def open_project(): # Opens a project
+
 number_of_files = len(os.listdir(BASE_DIRECTORY))
 
 file_list = []  # List of all filenames in 'basedir'.
@@ -104,7 +119,8 @@ file_data_list = []  # List of filenames and their metadata, which is generated 
 save_file_list = 'FL.txt'  # File that stores the list 'FileList' to resume work later
 save_file_data_list = 'FDL.txt'  # File that stores the list 'FileDataList' to resume work later
 
-save_project()
+init_project()
+# save_project()
 
 if IS_NEW_PROJECT:
     for f in os.listdir(BASE_DIRECTORY):
