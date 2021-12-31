@@ -170,26 +170,28 @@ def save_project(): # Saves current project.
     input('Done! Press any key to continue...')
 
 def work_on_files():
+    check_file_data_list()
     for i in range(number_of_files):
-        should_exit = False
-        e = input('Press Enter to continue, or "exit" to exit...')
-        if e == 'exit':
-            should_exit = True
-        if should_exit:
-            print('Exiting...')
+        if fdl_validation_index[i] == 0:
             should_exit = False
-            break
+            e = input('Press Enter to continue, or "exit" to exit...')
+            if e == 'exit':
+                should_exit = True
+            if should_exit:
+                print('Exiting...')
+                should_exit = False
+                break
 
-        print('File: ' + file_list[i] + '\n')
+            print('File: ' + file_list[i] + '\n')
 
-        npath = BASE_DIRECTORY + '/' + file_list[i]
-        # manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
+            npath = BASE_DIRECTORY + '/' + file_list[i]
+            # manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
 
-        for g in PARAMETER_LIST:
-            print('Input parameter ' + g + ': ')
-            x = input()
-            file_data_list[i] = file_data_list[i] + g + '.' + x + ','
-        file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
+            for g in PARAMETER_LIST:
+                print('Input parameter ' + g + ': ')
+                x = input()
+                file_data_list[i] = file_data_list[i] + g + '.' + x + ','
+            file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
 
 def fdl_parameter_parser(fdl_index): # Checks a file_data_list index and parse it's data.
     global PARAMETER_LIST
@@ -252,6 +254,6 @@ if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exi
 
 
 init_project()
-check_file_data_list()
-# work_on_files()
+
+work_on_files()
 save_project()
