@@ -94,6 +94,8 @@ def init_project(): # Initializes project name and savefile stuff
     global IS_NEW_PROJECT
     global PROJECT_NAME
     global SAVE_FOLDER
+
+    
     global number_of_files
     valid_input = False
 
@@ -129,6 +131,10 @@ def init_project(): # Initializes project name and savefile stuff
                 meta_file.write(file_list[i])
                 if i < number_of_files - 1:
                     meta_file.write('\n')
+        
+        for i in range(number_of_files):
+            file_data_list.append('\n')
+
     else:
         with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_list) as SFL:
             number_of_files = int(SFL.readline().strip('\n'))
@@ -136,11 +142,10 @@ def init_project(): # Initializes project name and savefile stuff
             for i in range(number_of_files):
                 file_list.append(SFL.readline().strip('\n'))
 
-        with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_data_list, 'w') as SFDL:
-            number_of_files = int(SFDL.readline().strip('\n'))
+        with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_data_list) as SFDL:
 
             for i in range(number_of_files):
-                file_list.append(SFDL.readline().strip('\n'))    
+                file_data_list.append(SFDL.readline().strip('\n'))    
     
 
 def save_project(): # Saves current project.
@@ -155,6 +160,8 @@ def save_project(): # Saves current project.
         for i in range(len(file_data_list)):
             w = file_data_list[i] + '\n'
             sFDL.write(w)
+    print('Saving project...')
+    input('Done! Press any key to continue...')
 
 # def open_project(): # Opens a project
 
@@ -163,8 +170,8 @@ def save_project(): # Saves current project.
 init_project()
 
 
-for i in range(number_of_files):
-    file_data_list.append('')
+
+
 
 for i in range(number_of_files):
     should_exit = False
@@ -189,6 +196,6 @@ for i in range(number_of_files):
         file_data_list[i] = file_data_list[i] + ',' + g + '.' + x
 
 
-
+save_project()
 
 # manipulateFile('lol.npsf', 'lol.wav', aczRADIOArguValues, 0)
