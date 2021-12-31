@@ -87,8 +87,7 @@ def manipulate_file(input_filename, output_filename, arg_values, mode):
     os.remove(bat_filename)
 
 
-if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exists. If not, the program quits.
-    exit(0)
+
 
 def init_project(): # Initializes project name and savefile stuff
     global IS_NEW_PROJECT
@@ -168,7 +167,9 @@ def save_project(): # Saves current project.
     print('Saving project...')
     input('Done! Press any key to continue...')
 
-# def open_project(): # Opens a project
+if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exists. If not, the program quits.
+    print('File directory not found. Press any key to exit...')
+    exit('Base directory not found')
 
 
 
