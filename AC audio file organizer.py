@@ -19,7 +19,7 @@ class ManipulateMode(Enum):
 BASE_DIRECTORY = 'BGM'
 METADATA_FOLDER = 'orgMeta'
 MAIN_METADATA_FILE = 'mainMeta.txt'  # Contains the names of all audio files to be worked with
-PROJECT_NAME = 'save1'
+PROJECT_NAME = ''
 
 MANIPULATE_MODE = ManipulateMode.CONVERT  # Mode for 'manipulateFile' function.
 
@@ -81,7 +81,11 @@ def manipulate_file(input_filename, output_filename, arg_values, mode):
 if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exists. If not, the program quits.
     exit(0)
 
-def save_project(): # Saves current project
+def init_project(): # Initializes project name and savefile stuff
+    new_project = input('Open existing project or Create new project? (y/n)')
+    
+
+def save_project(): # Saves current project. 
     with open(PROJECT_NAME + '/' + save_file_list, 'w') as sFL:
         sFL.write(str(number_of_files) + '\n')
         for i in range(len(file_list)):
@@ -100,7 +104,7 @@ file_data_list = []  # List of filenames and their metadata, which is generated 
 save_file_list = 'FL.txt'  # File that stores the list 'FileList' to resume work later
 save_file_data_list = 'FDL.txt'  # File that stores the list 'FileDataList' to resume work later
 
-
+save_project()
 
 if IS_NEW_PROJECT:
     for f in os.listdir(BASE_DIRECTORY):
