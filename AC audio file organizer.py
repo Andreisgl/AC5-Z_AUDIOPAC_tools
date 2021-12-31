@@ -192,7 +192,6 @@ def work_on_files():
         file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
 
 def fdl_parameter_parser(fdl_index): # Checks a file_data_list index and parse it's data.
-    print('FDL parameter parser')
     global PARAMETER_LIST
     parameter_ammount = len(PARAMETER_LIST)
     storage = []
