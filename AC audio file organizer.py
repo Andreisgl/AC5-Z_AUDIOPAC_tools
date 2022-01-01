@@ -142,6 +142,8 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
     if IS_NEW_PROJECT:
         if not os.path.exists(SAVE_FOLDER + '/' + PROJECT_NAME):
             os.mkdir(SAVE_FOLDER + '/' + PROJECT_NAME)
+        else:
+            exit('Project Already exists!')
 
         for f in os.listdir(BASE_DIRECTORY): # Lists all files to be worked with.
             file_list.append(f)
@@ -212,6 +214,8 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
             print('init pronto')
     
     else:
+        if os.path.exists(SAVE_FOLDER + '/' + PROJECT_NAME):
+            exit('Project Already exists!')
         try:
             with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_list) as SFL:
                 number_of_files = int(SFL.readline().strip('\n'))
