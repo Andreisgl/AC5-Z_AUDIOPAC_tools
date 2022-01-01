@@ -196,7 +196,7 @@ def work_on_files():
                 print('Input parameter ' + g + ': ')
                 x = input()
                 file_data_list[i] = file_data_list[i] + g + '.' + x + ','
-                file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
+            file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
             save_project()
 
 
