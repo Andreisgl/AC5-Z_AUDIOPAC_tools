@@ -25,7 +25,7 @@ PROJECT_NAME = ''
 MANIPULATE_MODE = ManipulateMode.CONVERT  # Mode for 'manipulateFile' function.
 
 ACZ_RADIO_ARG_VALUES = [22050, 1, 320, 0, 'WAVU', 22050, 1, 320]  # Temporary. Argument value set for ACZ RADIOUSA files.
-PARAMETER_LIST = ['CHARACTER', 'MISSION', 'ACESTYLE']  # This list stores all parameters that will be used to separate files. E.g: "CHARACTER", "MISSION"...
+PARAMETER_LIST = ['CHARACTER', 'MISSION', 'ACESTYLE', "PHRASE"]  # This list stores all parameters that will be used to separate files. E.g: "CHARACTER", "MISSION"...
 
 IS_NEW_PROJECT = True  # If this is a new project, create new lists. If not, retrieve saved files.
 
@@ -188,16 +188,17 @@ def work_on_files():
                 should_exit = False
                 break
 
-            print('File: ' + file_list[i] + '\n')
+            print('File: ' + file_list[i])
 
-            npath = file_list[i]
-            manipulate_file(npath, '', ACZ_RADIO_ARG_VALUES, 0)
+            manipulate_file(file_list[i], '', ACZ_RADIO_ARG_VALUES, 0)
             file_data_list[i] = ''
             for g in PARAMETER_LIST:
                 print('Input parameter ' + g + ': ')
                 x = input()
                 file_data_list[i] = file_data_list[i] + g + '.' + x + ','
-            file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
+                file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
+            save_project()
+
 
 def fdl_parameter_parser(fdl_index): # Checks a file_data_list index and parse it's data.
     global PARAMETER_LIST
