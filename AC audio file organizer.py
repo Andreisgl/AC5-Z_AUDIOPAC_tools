@@ -17,7 +17,6 @@ class ManipulateMode(Enum):
 
 
 BASE_DIRECTORY = 'BGM'
-METADATA_FOLDER = 'orgMeta'
 MAIN_METADATA_FILE = 'mainMeta.txt'  # Contains the names of all audio files to be worked with
 SAVE_FOLDER = 'Organizer Projects'
 PROJECT_NAME = ''
