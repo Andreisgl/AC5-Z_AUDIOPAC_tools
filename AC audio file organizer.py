@@ -85,7 +85,7 @@ def manipulate_file(input_filename, output_filename, arg_values, mode):
     if mode == 0:  # ... if the mode is "Convert (0)", add output filename as well.
         argument_buffer = argument_buffer + ' ' + '"' + output_filename + '"'
 
-    subprocess.run(argument_buffer)
+    subprocess.Popen(argument_buffer)
 
 
 
@@ -126,6 +126,9 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
         
         if not os.path.exists(SAVE_FOLDER + '/' + PROJECT_NAME):
             os.mkdir(SAVE_FOLDER + '/' + PROJECT_NAME)
+        else:
+            print('Project already exists!')
+            exit('Project already exists!')
 
         # Copy extracted files to project folder
         shutil.copytree(EXTRACT_DIRECTORY, BASE_DIRECTORY)
