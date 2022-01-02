@@ -168,8 +168,8 @@ CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. Will focus our (?) fire 
 CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. ...(?) anti-air attack
 CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. Focusing all fire on air targets.
 CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. Focusing all attacks on ground targets.
-
-
+CHARACTER.,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.,MISSION.,ACESTYLE.,PHRASE.
 
 
 
