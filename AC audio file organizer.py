@@ -187,18 +187,35 @@ def work_on_files():
     valid_answer = False
     index_jump = -1 # Index to which jump to.
                     # If == -1, start from first incomplete file.
-    while valid_answer == False:
-        index_jump = int(input('Jump to index:\n -1 to continue at first incomplete file: '))
+    order_of_increment = 1
+    loop_end = number_of_files # Where the "for" loop shall progress towards
+                                   #Changes wheter "order_of_increment is == 1 or ==- 1"
+    while valid_answer == False: # Index Jump
+        index_jump = int(input('Jump to index:\n\t -1 to continue at first incomplete file: '))
         if (not (0 <= index_jump <= number_of_files - 1)) and (not(type(index_jump) == int)):
             print('Invalid input!')
             valid_answer = False
         else:
             if index_jump == -1:
                 index_jump = 0
-            valid_answer = True    
+            valid_answer = True
 
+    valid_answer = False 
+    while valid_answer == False: # Order of increment:
+        order_of_increment = (
+            int(input('Order of increment:\n\t 1 to progress in ASCENDING order,\n\t -1 to progress in DESCENDING ORDER: ')) )
+        if order_of_increment != 1 and order_of_increment != -1: # Invalid answer!
+            print('Invalid input!')
+            valid_answer = False
+        else: # Valid answer!
+            if order_of_increment == 1:
+                loop_end = number_of_files
+            else:
+                loop_end = 0
+            valid_answer = True
 
-    for i in range(index_jump, number_of_files):
+    
+    for i in range(index_jump, loop_end, order_of_increment):
         if fdl_validation_index[i] == 0: # If index is empty or incomplete
             should_exit = False
             e = input('Press Enter to continue, or "exit" to exit...')
