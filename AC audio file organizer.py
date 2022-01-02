@@ -129,6 +129,7 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
             valid_input = False
             print('Invalid Answer!')
     
+    # Work on files saved on project folder, not the extracted folder
     BASE_DIRECTORY = SAVE_FOLDER + '/' + PROJECT_NAME + '/' + 'files'
 
     if IS_NEW_PROJECT:
@@ -136,8 +137,7 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
         if not os.path.exists(SAVE_FOLDER + '/' + PROJECT_NAME):
             os.mkdir(SAVE_FOLDER + '/' + PROJECT_NAME)
 
-        # if not os.path.exists(BASE_DIRECTORY):
-        #     os.mkdir(BASE_DIRECTORY)
+        # Copy extracted files to project folder
         shutil.copytree(EXTRACT_DIRECTORY, BASE_DIRECTORY)
         number_of_files = len(os.listdir(BASE_DIRECTORY))
         
@@ -166,7 +166,6 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
                     file_list.append(SFL.readline().strip('\n'))
 
             with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_data_list) as SFDL:
-
                 for i in range(number_of_files):
                     file_data_list.append(SFDL.readline().strip('\n'))
         except FileNotFoundError:
