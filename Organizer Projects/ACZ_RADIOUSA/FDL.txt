@@ -140,34 +140,34 @@ CHARACTER.dummy,MISSION.dummy,ACESTYLE.dummy,PHRASE.dummy
 CHARACTER.dummy,MISSION.dummy,ACESTYLE.dummy,PHRASE.dummy
 CHARACTER.dummy,MISSION.dummy,ACESTYLE.dummy,PHRASE.dummy
 CHARACTER.pixy,MISSION.WEAPON,ACESTYLE.0,PHRASE.Roger. in position to drop UGBL.
-CHARACTER.pixy,MISSION.WEAPON,ACESTYLE.0,PHRASE.Roger. Ready to release weapons
-CHARACTER.pixy,MISSION.WEAPON,ACESTYLE.0,PHRASE.Roger. XMAA firing sequency initiated
-CHARACTER.pixy,MISSION.WEAPON,ACESTYLE.0,PHRASE.Roger. Ready to fire
-CHARACTER.pixy,MISSION.WEAPON,ACESTYLE.0,PHRASE.Roger. QAAM firing sequence initiated
-CHARACTER.pixy,MISSION.WEAPON,ACESTYLE.0,PHRASE.Quick maneuver missile ready to fire.
+CHARACTER.pixy,MISSION.weapon,ACESTYLE.0,PHRASE.Roger. Ready to release weapons
+CHARACTER.pixy,MISSION.weapon,ACESTYLE.0,PHRASE.Roger. XMAA firing sequency initiated
+CHARACTER.pixy,MISSION.weapon,ACESTYLE.0,PHRASE.Roger. Ready to fire
+CHARACTER.pixy,MISSION.weapon,ACESTYLE.0,PHRASE.Roger. QAAM firing sequence initiated
+CHARACTER.pixy,MISSION.weapon,ACESTYLE.0,PHRASE.Quick maneuver missile ready to fire.
 CHARACTER.pixy,MISSION.?,ACESTYLE.?,PHRASE.Roger. Let's see how they like this one
 CHARACTER.pixy,MISSION.?,ACESTYLE.?,PHRASE.Roger. Ready to roll (?)
-CHARACTER.pixy,MISSION.WEAPON,ACESTYLE.0,PHRASE.Roger. Holding release of special weapons.
-CHARACTER.pixy,MISSION.WEAPON,ACESTYLE.0,PHRASE.Roger, arming hot (?)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+CHARACTER.pixy,MISSION.weapon,ACESTYLE.0,PHRASE.Roger. Holding release of special weapons.
+CHARACTER.pixy,MISSION.weapon,ACESTYLE.0,PHRASE.Roger, arming hot (?)
+CHARACTER.pixy,MISSION.weapon,ACESTYLE.0,PHRASE.Negative, no ammo left. All I have is regular ordinance.
+CHARACTER.pixy,MISSION.weapon,ACESTYLE.0,PHRASE.Roger. Master arm switches in the safe position.
+CHARACTER.pixy,MISSION.weapon,ACESTYLE.0,PHRASE.Roger. Usage prohibited
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger.
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Wilco.
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger.
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Pixy roger.
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Galm 2, roger.
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Copy that.
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger!
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger that!
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. Leave it to me
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. I'm on it
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Got it. Pour me at them (?)
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. Focusing on air targets.
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. Will focus our (?) fire on air targets
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. ...(?) anti-air attack
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. Focusing all fire on air targets.
+CHARACTER.pixy,MISSION.command,ACESTYLE.0,PHRASE.Roger. Focusing all attacks on ground targets.
 
 
 
