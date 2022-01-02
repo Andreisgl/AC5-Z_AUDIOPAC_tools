@@ -226,7 +226,7 @@ def work_on_files():
                 should_exit = False
                 break
 
-            print('File: ' + file_list[i])
+            print('File: ' + file_list[i] + '\nINDEX: ' + str(i))
 
             manipulate_file(file_list[i], '', ACZ_RADIO_ARG_VALUES, 0)
             file_data_list[i] = ''
