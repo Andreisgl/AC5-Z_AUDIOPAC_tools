@@ -5,10 +5,6 @@
 # Dependencies:
     # MFAudio
 
-
-##TODO:
-# Read "project_data" on project opening
-
 import os
 import shutil
 import subprocess
