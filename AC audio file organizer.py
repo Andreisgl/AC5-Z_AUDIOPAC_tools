@@ -24,16 +24,16 @@ PROJECT_NAME = ''
 MANIPULATE_MODE = ManipulateMode.CONVERT  # Mode for 'manipulateFile' function.
 
 
-ACZ_RADIO_ARG_VALUES = [22050, 1, 320, 0, 'WAVU', 22050, 1, 320] # Argument value set for ACZ RADIOUSA files.
+ACZ_RADIO_ARG_VALUES = [22050, 1, 0, 0, 'WAVU', 22050, 1, 320] # Argument value set for ACZ RADIOUSA files.
 ACZ_BGM_ARG_VALUES = [44100, 1, 320, 0, 'WAVU', 22050, 2, 320] # Argument value set for ACZ BGM files.
 
-AC5_RADIO_ARG_VALUES = [22050, 1, 320, 0, 'WAVU', 22050, 1, 320] # Argument value set for ACZ RADIOUSA files.
+AC5_RADIO_ARG_VALUES = [22050, 1, 0, 0, 'WAVU', 22050, 1, 320] # Argument value set for ACZ RADIOUSA files.
 AC5_BGM_ARG_VALUES = [44100, 1, 320, 0, 'WAVU', 22050, 2, 320] # Argument value set for ACZ BGM files.
 
 
 GAME_INDEX = ['AC5', 'AC0'] # Which AC games are supported?
 MODE_INDEX = ['BGM', 'RADIO'] # To mod RADIO or BGM.
-PROJECT_AUDIO_ARG_VALUES = ['', '', '', '', '', '', '', ''] # Holds the project's audio argument value set for MFAudio.
+PROJECT_AUDIO_ARG_VALUES = [] # Holds the project's audio argument value set for MFAudio.
 
 # AC5_RADIO_FILES = ['RADIOEE', 'RADIOEJ'] # Names of each game's Radio files
 # ACZ_RADIO_FILES = ['RADIOUSA']
@@ -155,12 +155,6 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
                 if i < number_of_files - 1:
                     meta_file.write('\n')
         
-        
-        with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_data_list, 'w') as sFDL:
-            for i in range(len(file_data_list)):
-                sFDL.write('\n')
-
-
         for i in range(number_of_files): # Defines size of list.
             file_data_list.append('')
 
@@ -204,7 +198,6 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
                 project_meta.write(project_data[i] + '\n')
             
             # Selects parameters for MFAudio reproduction and conversion based on answers
-            global PROJECT_AUDIO_ARG_VALUES
             if project_data[0] == 'AC0':
                 if project_data[1] == 'RADIO':
                     PROJECT_AUDIO_ARG_VALUES = ACZ_RADIO_ARG_VALUES
@@ -221,8 +214,8 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
             print('init pronto')
     
     else:
-        if not os.path.exists(SAVE_FOLDER + '/' + PROJECT_NAME):
-            exit('Project does not exist!')
+        if os.path.exists(SAVE_FOLDER + '/' + PROJECT_NAME):
+            exit('Project Already exists!')
         try:
             with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_list) as SFL:
                 number_of_files = int(SFL.readline().strip('\n'))
