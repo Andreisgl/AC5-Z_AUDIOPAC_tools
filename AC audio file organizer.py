@@ -67,7 +67,6 @@ def manipulate_file(input_filename, output_filename, arg_values, mode):
 
     bat_filename = 'temp.bat' # Temporary .bat file to execute MFAudio.exe (It only worked when I did this...)
 
-    ORIGIN_PATH = './'
     DESTINATION_PATH = BASE_DIRECTORY
 
     args = ['/IF', '/IC', '/II', '/IH', '/OT', '/OF', '/OC', '/OI'] #Contains the core arguments.
@@ -83,7 +82,7 @@ def manipulate_file(input_filename, output_filename, arg_values, mode):
         argument_buffer = argument_buffer + concat_args[i] + ' '
 
     # Adds a input filename to 'argumentBuffer' string and...
-    argument_buffer ='"' + DESTINATION_PATH + '/' + exe_filename + '" ' + argument_buffer + '"' + DESTINATION_PATH + '\\'+ input_filename + '"'
+    argument_buffer = exe_filename + argument_buffer + '"' + DESTINATION_PATH + '\\'+ input_filename + '"'
 
     if mode == 0:  # ... if the mode is "Convert (0)", add output filename as well.
         argument_buffer = argument_buffer + ' ' + '"' + output_filename + '"'
@@ -91,9 +90,7 @@ def manipulate_file(input_filename, output_filename, arg_values, mode):
     with open(bat_filename, 'w') as bat_file: # Create .bat file
         bat_file.write(argument_buffer)
 
-    shutil.move(ORIGIN_PATH + '/' + exe_filename, DESTINATION_PATH + '/' + exe_filename)
     subprocess.run([bat_filename])
-    shutil.move(DESTINATION_PATH + '/' + exe_filename, ORIGIN_PATH + '/' + exe_filename)
     os.remove(bat_filename)
 
 
