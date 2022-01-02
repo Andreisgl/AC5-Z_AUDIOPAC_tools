@@ -184,8 +184,22 @@ def save_project(): # Saves current project.
 
 def work_on_files():
     check_file_data_list()
-    for i in range(number_of_files):
-        if fdl_validation_index[i] == 0:
+    valid_answer = False
+    index_jump = -1 # Index to which jump to.
+                    # If == -1, start from first incomplete file.
+    while valid_answer == False:
+        index_jump = int(input('Jump to index:\n -1 to continue at first incomplete file: '))
+        if (not (0 <= index_jump <= number_of_files - 1)) and (not(type(index_jump) == int)):
+            print('Invalid input!')
+            valid_answer = False
+        else:
+            if index_jump == -1:
+                index_jump = 0
+            valid_answer = True    
+
+
+    for i in range(index_jump, number_of_files):
+        if fdl_validation_index[i] == 0: # If index is empty or incomplete
             should_exit = False
             e = input('Press Enter to continue, or "exit" to exit...')
             if e == 'exit':
