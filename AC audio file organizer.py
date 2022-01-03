@@ -190,6 +190,8 @@ def work_on_files():
     order_of_increment = 1
     loop_end = number_of_files # Where the "for" loop shall progress towards
                                    #Changes wheter "order_of_increment is == 1 or ==- 1"
+    validity__status_checker = 0 # Whick validity status to check;
+
     while valid_answer == False: # Index Jump
         index_jump = int(input('Jump to index:\n\t -1 to continue at first incomplete file: '))
         if (not (0 <= index_jump <= number_of_files - 1)) and (not(type(index_jump) == int)):
@@ -214,9 +216,24 @@ def work_on_files():
                 loop_end = 0
             valid_answer = True
 
+    valid_answer = False 
+    while valid_answer == False: # Which indexes to check:
+                                    # 0: Empty.
+                                    # 1: Full.
+                                    # 2: Incomplete.
+        validity__status_checker = (int(input(
+            'Validity Checker:\n\t 0: Check only empty indexes,\n\t 1: Check only complete indexes,\n\t 2: Check only incomplete indexes.\n')))
+            
+        if not (0 <= validity__status_checker <= 2): # Invalid answer!
+            print('Invalid input!')
+            valid_answer = False
+
+        else: # Valid answer!
+            valid_answer = True
+
     
     for i in range(index_jump, loop_end, order_of_increment):
-        if fdl_validation_index[i] == 0: # If index is empty or incomplete
+        if fdl_validation_index[i] == validity__status_checker: # If validity index equals the one being checked:
             should_exit = False
             e = input('Press Enter to continue, or "exit" to exit...')
             if e == 'exit':
@@ -227,6 +244,10 @@ def work_on_files():
                 break
 
             print('File: ' + file_list[i] + '\nINDEX: ' + str(i))
+            for g in range(len(PARAMETER_LIST)): # Display current values for index.
+                print(PARAMETER_LIST[g] + ': ' + fdl_parameter_parser(i)[g])
+                
+
 
             manipulate_file(file_list[i], '', ACZ_RADIO_ARG_VALUES, 0)
             file_data_list[i] = ''
@@ -256,8 +277,9 @@ def fdl_parameter_parser(fdl_index): # Checks a file_data_list index and parse i
 
 def check_file_data_list(): # Checks 'save_file_data_list' and creates an index of files without parameters
     # Types of index values:
-        # 0: No parameters or incomplete.
+        # 0: No parameters.
         # 1: Fully filled in.
+        # 2: Incomplete
     # Intended use: work_on_files() will check 'fdl_validation_index' and ignore indexes that have all complete parameters.
     global fdl_validation_index # List of all indexes in filde_data_list
     parameter_value_buffer = [] # List of values for each parameter
@@ -278,10 +300,17 @@ def check_file_data_list(): # Checks 'save_file_data_list' and creates an index 
             else: # If parameter is NOT empty
                 parameter_validation_buffer[c] = 1
         
-        for j in range(number_of_parameters):
-            if parameter_validation_buffer[j] != 1:
-                fdl_validation_index[i] = 0
-            else: fdl_validation_index[i] = 1
+        final_validation = 0
+        # If all parameters are VALID:
+        if all( parameter_validation_buffer[i] == 1 for i in parameter_validation_buffer ):
+            fdl_validation_index[i] = 1
+        # If all parameters are INVALID:
+        elif all( parameter_validation_buffer[i] == 0 for i in parameter_validation_buffer ):
+            fdl_validation_index[i] = 0
+        # If parameters are incomplete:
+        else:
+            fdl_validation_index[i] = 2
+
 
 
             
