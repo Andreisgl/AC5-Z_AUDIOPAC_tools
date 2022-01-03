@@ -271,6 +271,8 @@ def work_on_files():
                     file_data_list[i] = file_data_list[i] + g + '.' + x + ','
                 file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
                 save_project()
+    
+    input('Work done! Press any key to continue...')
             
             
 
