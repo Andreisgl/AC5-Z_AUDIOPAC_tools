@@ -190,7 +190,9 @@ def work_on_files():
     order_of_increment = 1
     loop_end = number_of_files # Where the "for" loop shall progress towards
                                    #Changes wheter "order_of_increment is == 1 or ==- 1"
-    validity__status_checker = 0 # Whick validity status to check;
+    validity__status_checker = 1 # Whick validity status to check;
+
+    work_mode = 1 # Work mode. 0 = READ ONLY, 1 = WRITE
 
     while valid_answer == False: # Index Jump
         index_jump = int(input('Jump to index:\n\t -1 to continue at first incomplete file: '))
@@ -230,6 +232,19 @@ def work_on_files():
 
         else: # Valid answer!
             valid_answer = True
+    
+    valid_answer = False
+    while valid_answer == False: # Work mode:
+                                    # 0: READ ONLY
+                                    # 1: WRITE
+        work_mode = (int(input('Work Mode:\n\t 0: READ ONLY,\n\t 1: WRITE.')))
+            
+        if not (0 <= work_mode <= 1): # Invalid answer!
+            print('Invalid input!')
+            valid_answer = False
+
+        else: # Valid answer!
+            valid_answer = True
 
     
     for i in range(index_jump, loop_end, order_of_increment):
@@ -247,16 +262,17 @@ def work_on_files():
             for g in range(len(PARAMETER_LIST)): # Display current values for index.
                 print(PARAMETER_LIST[g] + ': ' + fdl_parameter_parser(i)[g])
                 
-
-
             manipulate_file(file_list[i], '', ACZ_RADIO_ARG_VALUES, 0)
-            file_data_list[i] = ''
-            for g in PARAMETER_LIST:
-                print('Input parameter ' + g + ': ')
-                x = input()
-                file_data_list[i] = file_data_list[i] + g + '.' + x + ','
-            file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
-            save_project()
+            if work_mode == 1: # WRITE
+                file_data_list[i] = ''
+                for g in PARAMETER_LIST:
+                    print('Input parameter ' + g + ': ')
+                    x = input()
+                    file_data_list[i] = file_data_list[i] + g + '.' + x + ','
+                file_data_list[i] = file_data_list[i].rstrip(file_data_list[i][-1])
+                save_project()
+            
+            
 
 
 def fdl_parameter_parser(fdl_index): # Checks a file_data_list index and parse it's data.
