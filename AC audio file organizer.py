@@ -23,6 +23,7 @@ EXTRACT_DIRECTORY = 'BGM'
 MAIN_METADATA_FILE = 'mainMeta.txt'  # Contains the names of all audio files to be worked with
 SAVE_FOLDER = 'Organizer Projects'
 PROJECT_NAME = ''
+WORK_FOLDER = 'Work'
 
 MANIPULATE_MODE = ManipulateMode.CONVERT  # Mode for 'manipulateFile' function.
 
@@ -330,6 +331,77 @@ def check_file_data_list(): # Checks 'save_file_data_list' and creates an index 
             fdl_validation_index[i] = 2
 
 
+def separate_by_parameter(): # Separates files by chosen parameter.    
+    global PARAMETER_LIST
+    global fdl_validation_index
+    reference_parameter = 0 # Parameter index in "PARAMETER_LIST" to be checked.
+
+    # List contains all parameter values in file for given parameter.
+    #Creates a folder for each value, if not empty.
+    parameter_value_index = []
+    parameter_value_buffer = ''
+
+    valid_answer = False
+
+    check_file_data_list() # Updates validation index.
+
+    print('Separate files by parameter in folders. Maintains base folder intact.')
+    print('Choose which parameter to separate by: \n----------')
+    for g in range(len(PARAMETER_LIST)):
+        print(str(g) + ': ' + PARAMETER_LIST[g])
+    print('----------')
+    
+    while valid_answer == False: # Index Jump
+        reference_parameter = int(input('Parameter: '))
+        # If input is not between first and last indexes in "PARAMETER_LIST"
+        if not(
+            int((PARAMETER_LIST.index(PARAMETER_LIST[0])))
+            <= reference_parameter
+            <= int((PARAMETER_LIST.index(PARAMETER_LIST[-1])))
+            ):
+            
+            print('Invalid input!')
+            valid_answer = False
+        else:
+            valid_answer = True
+    
+    
+    for i in range(number_of_files):
+        parameter_value_buffer = fdl_parameter_parser(i)[reference_parameter]
+        
+        # List all folders to be created:
+        # If index is not empty:
+        if fdl_validation_index[i] == 1 or fdl_validation_index[i] == 2:
+            if parameter_value_buffer: # If parameter value is not empty:
+                # If value is not already present in the list:
+                if not(parameter_value_buffer in parameter_value_index):
+                    # Add it to the list.
+                    parameter_value_index.append(parameter_value_buffer)
+    
+    # Create folders and copy files for each parameter value.
+
+        buffer_folder_path = SAVE_FOLDER + '/' + PROJECT_NAME + '/' + WORK_FOLDER + '/' + PARAMETER_LIST[reference_parameter] + '/'
+        if not os.path.exists(buffer_folder_path):
+            os.mkdir(buffer_folder_path)
+
+    for p in range(len(parameter_value_index)):
+        buffer_folder_path = SAVE_FOLDER + '/' + PROJECT_NAME + '/' + WORK_FOLDER + '/' + PARAMETER_LIST[reference_parameter] + '/' + parameter_value_index[p]
+        if not os.path.exists(buffer_folder_path):
+            os.mkdir(buffer_folder_path)
+        for l in range(number_of_files):
+            parameter_value_buffer = fdl_parameter_parser(l)[reference_parameter]
+            if parameter_value_buffer == parameter_value_index[p]:
+                shutil.copy(BASE_DIRECTORY + '/' + file_list[l], buffer_folder_path)
+    
+
+            
+        
+    print('lol')
+
+
+
+
+
 
             
 
@@ -347,5 +419,7 @@ def check_file_data_list(): # Checks 'save_file_data_list' and creates an index 
 
 init_project()
 
-work_on_files()
-save_project()
+separate_by_parameter()
+print('lol')
+# work_on_files()
+# save_project()
