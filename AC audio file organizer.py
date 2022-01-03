@@ -5,6 +5,8 @@
 # Dependencies:
     # MFAudio
 
+## TODO:
+# Please, for everything that is holy, simplify the folder path creation, future Andrei!
 import os
 import shutil
 import subprocess
