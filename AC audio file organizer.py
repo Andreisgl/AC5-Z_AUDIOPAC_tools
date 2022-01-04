@@ -343,7 +343,7 @@ def check_file_data_list(): # Checks 'save_file_data_list' and creates an index 
         else:
             fdl_validation_index[i] = 2
 
-    print('lol')
+    
 
 
 def separate_by_parameter(): # Separates files by chosen parameter.    
@@ -417,6 +417,6 @@ def separate_by_parameter(): # Separates files by chosen parameter.
 
 init_project()
 
-# separate_by_parameter()
-work_on_files()
+separate_by_parameter()
+# work_on_files()
 save_project()
