@@ -402,25 +402,8 @@ def separate_by_parameter(): # Separates files by chosen parameter.
 
 
 
-
-
-
-            
-
-
-
-
-    
-
-
-# if not os.path.exists(BASE_DIRECTORY):  # Check if the folder to be accessed exists. If not, the program quits.
-#     print('File directory not found. Press any key to exit...')
-#     exit('Base directory not found')
-
-
-
 init_project()
 
-# separate_by_parameter()
-work_on_files()
+separate_by_parameter()
+# work_on_files()
 save_project()
