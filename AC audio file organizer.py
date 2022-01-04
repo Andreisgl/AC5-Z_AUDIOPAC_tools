@@ -18,7 +18,7 @@ class ManipulateMode(Enum):
     REPRODUCE = 1
 
 
-BASE_DIRECTORY = ''
+BASE_DIRECTORY = 'files'
 
 EXTRACT_DIRECTORY = 'BGM'
 
@@ -98,6 +98,7 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
     global PROJECT_NAME
     global SAVE_FOLDER
     global BASE_DIRECTORY
+    global WORK_FOLDER
     
 
     
@@ -122,13 +123,17 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
             valid_input = False
             print('Invalid Answer!')
     
-    # Work on files saved on project folder, not the extracted folder
-    BASE_DIRECTORY = SAVE_FOLDER + '/' + PROJECT_NAME + '/' + 'files'
+    PROJECT_NAME = SAVE_FOLDER + '/' + PROJECT_NAME
+    BASE_DIRECTORY = PROJECT_NAME + '/' + BASE_DIRECTORY
+    WORK_FOLDER = PROJECT_NAME + '/' + WORK_FOLDER
 
+    if not os.path.exists(WORK_FOLDER):
+        os.mkdir(WORK_FOLDER)
+    
     if IS_NEW_PROJECT:
         
-        if not os.path.exists(SAVE_FOLDER + '/' + PROJECT_NAME):
-            os.mkdir(SAVE_FOLDER + '/' + PROJECT_NAME)
+        if not os.path.exists(PROJECT_NAME):
+            os.mkdir(PROJECT_NAME)
         else:
             print('Project already exists!')
             exit('Project already exists!')
@@ -143,7 +148,7 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
             file_list.append(f)
 
         # Store all those filenames in save_file_list.
-        with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_list, 'w') as meta_file: 
+        with open(PROJECT_NAME + '/' + save_file_list, 'w') as meta_file: 
             meta_file.write(str(number_of_files) + '\n')
             for i in range(number_of_files):
                 meta_file.write(file_list[i])
@@ -155,13 +160,13 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
     
     else:
         try:
-            with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_list) as SFL:
+            with open(PROJECT_NAME + '/' + save_file_list) as SFL:
                 number_of_files = int(SFL.readline().strip('\n'))
 
                 for i in range(number_of_files):
                     file_list.append(SFL.readline().strip('\n'))
 
-            with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_data_list) as SFDL:
+            with open(PROJECT_NAME + '/' + save_file_data_list) as SFDL:
                 for i in range(number_of_files):
                     file_data_list.append(SFDL.readline().strip('\n'))
         except FileNotFoundError:
@@ -173,12 +178,12 @@ def init_project(): # Initializes project name and savefile stuff. MUST BE FIRST
 def save_project(): # Saves current project.
     global SAVE_FOLDER
     global PROJECT_NAME
-    with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_list, 'w') as sFL:
+    with open(PROJECT_NAME + '/' + save_file_list, 'w') as sFL:
         sFL.write(str(number_of_files) + '\n')
         for i in range(len(file_list)):
             w = file_list[i] + '\n'
             sFL.write(w)
-    with open(SAVE_FOLDER + '/' + PROJECT_NAME + '/' + save_file_data_list, 'w') as sFDL:
+    with open(PROJECT_NAME + '/' + save_file_data_list, 'w') as sFDL:
         for i in range(len(file_data_list)):
             w = file_data_list[i] + '\n'
             sFDL.write(w)
@@ -382,12 +387,12 @@ def separate_by_parameter(): # Separates files by chosen parameter.
     
     # Create folders and copy files for each parameter value.
 
-        buffer_folder_path = SAVE_FOLDER + '/' + PROJECT_NAME + '/' + WORK_FOLDER + '/' + PARAMETER_LIST[reference_parameter] + '/'
+        buffer_folder_path = WORK_FOLDER + '/' + PARAMETER_LIST[reference_parameter] + '/'
         if not os.path.exists(buffer_folder_path):
             os.mkdir(buffer_folder_path)
 
     for p in range(len(parameter_value_index)):
-        buffer_folder_path = SAVE_FOLDER + '/' + PROJECT_NAME + '/' + WORK_FOLDER + '/' + PARAMETER_LIST[reference_parameter] + '/' + parameter_value_index[p]
+        buffer_folder_path = WORK_FOLDER + '/' + PARAMETER_LIST[reference_parameter] + '/' + parameter_value_index[p]
         if not os.path.exists(buffer_folder_path):
             os.mkdir(buffer_folder_path)
         for l in range(number_of_files):
