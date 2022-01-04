@@ -45,6 +45,14 @@ def write_tbl_from_pac():
                 offset_file_debug.write(element.to_bytes(4, byteorder="little"))
         print("Exporting debug offsets...")
     
+    if EXPORT_OFFSETS == 1: # Exports found offsets to facilitate investigation
+        with open("offset_list_debug.acd", "wb") as offset_file_debug:
+            offset_file_debug.write(len(offset_list).to_bytes(byteorder="little", length=4))
+            for element in offset_list:
+                offset_file_debug.write(element.to_bytes(4, byteorder="little"))
+        print("Exporting debug offsets...")
+
+        
     return
 
 
