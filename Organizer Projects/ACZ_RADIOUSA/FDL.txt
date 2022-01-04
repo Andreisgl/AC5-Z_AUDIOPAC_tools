@@ -337,26 +337,26 @@ CHARACTER.pixy,MISSION.unknown,ACESTYLE.unknown,PHRASE.Something's not right. Th
 
 
 
-
-CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
-CHARACTER.pixy,MISSION.pixy,ACESTYLE.,PHRASE.
-CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.What is our mission?!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.We would be finished with this war if they would just blow everything up!
+CHARACTER.pixy,MISSION.18,ACESTYLE.,PHRASE.This will blanket the world like snow
+CHARACTER.pixy,MISSION.18,ACESTYLE.,PHRASE.There is no mercy in war. People live and people die. That's all there is to it.
 CHARACTER.pixy,MISSION.18,ACESTYLE.0,PHRASE.You fired up? Come shoot me down.
-CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.This world is a lost cause.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.This world is a lost cause
 CHARACTER.pixy,MISSION.18,ACESTYLE.0,PHRASE.Looks like we've both still got what it takes.
 CHARACTER.pixy,MISSION.18,ACESTYLE.0,PHRASE.Get ready!
 CHARACTER.pixy,MISSION.18,ACESTYLE.0,PHRASE.Now we find out who's number one.
-CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.18,ACESTYLE.,PHRASE.I can't lose
 CHARACTER.pixy,MISSION.18,ACESTYLE.0,PHRASE.Come on.
-CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Not yet.
-CHARACTER.pixy,MISSION.18,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.18,ACESTYLE.,PHRASE.Not yet.
+CHARACTER.pixy,MISSION.18,ACESTYLE.,PHRASE.Try again from head on!
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.pixy,MISSION.1,ACESTYLE.,PHRASE.
-CHARACTER.,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.There's only one left!
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
@@ -586,25 +586,25 @@ CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-CHARACTER.,MISSION.,ACESTYLE.,PHRASE.
-CHARACTER.,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Hornets. Don't let they sting you in the ass!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Looks like we've got some Gripens to deal with
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Cipher, let's do this right. I know you've got what it takes.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Cipher, let's do this right. The battle is going in our favor!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Cipher, let's do this right. We have the pride it takes to win!
 CHARACTER.pixy,MISSION.18,ACESTYLE.mercenary,PHRASE.It's pretty ironic, Buddy. A couple of dogs like us fightin' the last battle.
 CHARACTER.pixy,MISSION.18,ACESTYLE.soldier,PHRASE.It's not over, Buddy. This is where it all starts. You know what I'm talkin' about, right?
 CHARACTER.pixy,MISSION.18,ACESTYLE.knight,PHRASE.There's only one way, Buddy. You've gotta fight for what you believe in.
-CHARACTER.,MISSION.,ACESTYLE.,PHRASE.
-CHARACTER.,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Cipher, what sould I equip with?
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Should I fly a sortie with this equipment?
 CHARACTER.dummy,MISSION.dummy,ACESTYLE.dummy,PHRASE.dummy
 CHARACTER.dummy,MISSION.dummy,ACESTYLE.dummy,PHRASE.dummy
 CHARACTER.dummy,MISSION.dummy,ACESTYLE.dummy,PHRASE.dummy
@@ -1053,7 +1053,7 @@ CHARACTER.dummy,MISSION.dummy,ACESTYLE.dummy,PHRASE.dummy
 CHARACTER.dummy,MISSION.dummy,ACESTYLE.dummy,PHRASE.dummy
 CHARACTER.eagleeye,MISSION.unknown,ACESTYLE.unknown,PHRASE.All targets destroyed. Mission acomplished. Good work, Cipher.
 CHARACTER.eagleeye,MISSION.unknown,ACESTYLE.unknown,PHRASE.We're confirming the situation. Cipher, PJ, standby.
-CHARACTER.dumm,MISSION.dummy,ACESTYLE.,PHRASE.
+CHARACTER.,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.eagleeye,MISSION.17,ACESTYLE.unknown,PHRASE.Confirmed reactivation of nuclear silo. Galm team, continue your mission. Engage!
 CHARACTER.eagleeye,MISSION.unknown,ACESTYLE.unknown,PHRASE.Standby. We're analysing the situation.
 CHARACTER.eagleeye,MISSION.18,ACESTYLE.0,PHRASE.Phase 1 analysis complete!
