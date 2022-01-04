@@ -421,7 +421,6 @@ def separate_by_parameter(): # Separates files by chosen parameter.
 
 init_project()
 
-separate_by_parameter()
-print('lol')
-# work_on_files()
-# save_project()
+# separate_by_parameter()
+work_on_files()
+save_project()
