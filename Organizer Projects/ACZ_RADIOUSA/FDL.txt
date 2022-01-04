@@ -279,29 +279,38 @@ CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.We have ground coverage down there
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.There's a plenty of bullets heading our way. don't get shot down, buddy
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Stay alert or you'll be shot full of holes
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.It all starts (...)
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Looks like an ocean of bullets coming at us
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.They pick on small prey like us
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Flying flat (?) is gonna get you shot down
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Belkan fighters. Great. Perfect timing.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Head back to base if anything is wrong with your plane
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Let your guard down for a second and you will be shot to pieces
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Run through a plane check now. I don't wanna hear any excuses later
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Belka stood up like a wounded beast(?). Better stay focused
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.That was a smooth retreat. I wonder if(...) unit at the back
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.This is bad. I'm outta here!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.My plane is in good shape. Buddy, you'll be calling me ace at the end of the day
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.So this is the sky the Belkans consider their homeland
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.They work well as a team. They must have a capable commander
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.That was a smooth retreat. I wonder if(...) unit at the back
+CHARACTER.,MISSION.,ACESTYLE.,PHRASE.Don't panic. Just keep flying and keep an eye on your radar
 CHARACTER.pixy,MISSION.unknown,ACESTYLE.unknown,PHRASE.This is bad. I'm outta here!
 CHARACTER.pixy,MISSION.unknown,ACESTYLE.unknown,PHRASE.This sky stretches all the way to Ustio.
 CHARACTER.pixy,MISSION.unknown,ACESTYLE.unknown,PHRASE.Pride and determination is what keeps the Belkans going.
 CHARACTER.pixy,MISSION.unknown,ACESTYLE.unknown,PHRASE.Something's not right. The Belkans should be able to send out more fighters than this.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.That was a smooth retreat. I wonder if(...) unit at the back
+CHARACTER.,MISSION.,ACESTYLE.,PHRASE.Don't panic. Just keep flying and keep an eye on your radar
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.This is bad. I'm outta here!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Looks like a handful of fighters have come to the rescue
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.The Belkans are starting to get frustrated
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Winning this battle will shift the momentum in our favor!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Yo buddy, you got everyone fired up and believing in miracles.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Another day, another dollar!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.We still gotta get the job done
 
 
 
@@ -309,34 +318,25 @@ CHARACTER.pixy,MISSION.unknown,ACESTYLE.unknown,PHRASE.Something's not right. Th
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+CHARACTER.,MISSION.,ACESTYLE.,PHRASE.
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.These are Belkan fighters. I'm sure of it
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.This isn't a typical war for them. They've been trained to enjoy the rush of combat
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Underestimate them and you'll get shot down
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Looks like we came just in time
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Shoot the enemy. That's what we are getting paid for
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.You're still yapping, aren't ya? That tells me you're fine
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.I've never been fond of the limelight
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.They´re going to throw everything they have at us, stay alert
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.The sky is on fire
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Let's move
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Here come the cowards!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.AWACS, our mission!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Our mission, our job!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.PJ, what is our mission?
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.What have we done?!
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.This is-
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Our mission-
+CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.Is this- what our mission is?!
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.What is our mission?!
 CHARACTER.pixy,MISSION.,ACESTYLE.,PHRASE.We would be finished with this war if they would just blow everything up!
 CHARACTER.pixy,MISSION.18,ACESTYLE.,PHRASE.This will blanket the world like snow
