@@ -25,15 +25,25 @@ def write_tbl_from_pac():
             os.mkdir(WORK_FOLDER)
     
     offset_list = []
-    tbl_size = os.path.getsize(ORIGINAL_FILE_NAME)
-
+    
+    try:
+        tbl_size = os.path.getsize(ORIGINAL_FILE_NAME)
+        
+    except FileNotFoundError as x:
+        print ()
+        errormsg = "///ERROR///: .PAC file not found."
+        print (errormsg)
+        print ()
+        input("///INPUT///: Press any key to exit...")
+        exit(errormsg)
+    
     with open(ORIGINAL_FILE_NAME, 'rb') as pac_file:
-        for bytes_offset in range(0, tbl_size, 4):
-            data = pac_file.read(4)
-            if not data:
-                break
-            if data == b'NPSF':
-                offset_list.append(bytes_offset)
+            for bytes_offset in range(0, tbl_size, 4):
+                data = pac_file.read(4)
+                if not data:
+                    break
+                if data == b'NPSF':
+                    offset_list.append(bytes_offset)
 
     with open(RESULTING_FILE_NAME, "wb") as tbl_file:
         tbl_file.write(len(offset_list).to_bytes(byteorder="little", length=4))

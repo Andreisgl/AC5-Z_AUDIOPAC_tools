@@ -1,4 +1,4 @@
-##ACZ BGM.APC unpacker by death_the_d0g (death_the_d0g @ Twitter)
+##ACZ BGM.PAC unpacker by death_the_d0g (death_the_d0g @ Twitter)
 ##
 ##Further expansion and experimentation by Andrei Segal (Andreisgl @ Github)
 ##and Luis Filipe Sales (luisfilipels @ GitHub)
