@@ -10,10 +10,20 @@ import textwrap
 ORIGINAL_FILE_NAME = "DATA.PAC" # Change this for fast debugging
 RESULTING_FILE_NAME = "DATA_TBL.acd"
 
+WORK_FOLDER = "./WORK"
+
+
+ORIGINAL_FILE_NAME = WORK_FOLDER + "/" + ORIGINAL_FILE_NAME
+RESULTING_FILE_NAME = WORK_FOLDER + "/" + RESULTING_FILE_NAME
 
 def write_tbl_from_pac():
-    print(textwrap.fill("///INFO///: Extracting files, please wait...", width=72))
+    print(textwrap.fill("///INFO///: Processing files, please wait...", width=72))
 
+    
+
+    if not os.path.exists(WORK_FOLDER):
+            os.mkdir(WORK_FOLDER)
+    
     offset_list = []
     tbl_size = os.path.getsize(ORIGINAL_FILE_NAME)
 
