@@ -36,10 +36,11 @@ def write_tbl_from_pac():
 
 
 
-print(textwrap.fill("Ace Combat Zero BGM.PAC unpacker by death_the_d0g (death_the_d0g @ Twitter)", width=80))
+print(textwrap.fill("Ace Combat 5/Zero .PAC parser by Andrei Segal (Andrei_sgl@ Github) and Luis Filipe Sales (luisfilipels @ GitHub)", width=80))
+print(textwrap.fill("Adapted from death_the_d0g's (death_the_d0g @ Twitter) original ACZ BGM.PAC unpacker", width=80))
 print(textwrap.fill("===========================================================================", width=80))
 print()
-print("Extracts the contents found inside ACZs BGM.PAC files.")
+print("Creates a TBL.acd file for a given .PAC file (DATA.PAC and BGM.PAC supported).")
 
 write_tbl_from_pac()
 
