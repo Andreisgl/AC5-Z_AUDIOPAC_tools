@@ -60,7 +60,7 @@ print(textwrap.fill("Ace Combat 5/Zero .PAC parser by Andrei Segal (Andrei_sgl@ 
 print(textwrap.fill("Adapted from death_the_d0g's (death_the_d0g @ Twitter) original ACZ BGM.PAC unpacker", width=80))
 print(textwrap.fill("===========================================================================", width=80))
 print()
-print("Creates a TBL.acd file for a given .PAC file (DATA.PAC and BGM.PAC supported).")
+print("Creates a TBL.acd file for a given .PAC file (Only BGM and RADIO files supported).")
 
 write_tbl_from_pac()
 
