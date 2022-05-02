@@ -7,10 +7,8 @@ import os
 import shutil
 import textwrap
 
-EXPORT_OFFSETS = 1  # Change this to export offset_list for easier investigation
-
-ORIGINAL_FILE_NAME = "BGM.PAC" # Change this for fast debugging
-RESULTING_FILE_NAME = "BGM_TBL.acd"
+ORIGINAL_FILE_NAME = "DATA.PAC" # Change this for fast debugging
+RESULTING_FILE_NAME = "DATA_TBL.acd"
 
 
 def write_tbl_from_pac():
@@ -32,20 +30,6 @@ def write_tbl_from_pac():
         for element in offset_list:
             tbl_file.write(element.to_bytes(4, byteorder="little"))
 
-
-    if EXPORT_OFFSETS == 1: # Exports found offsets to facilitate investigation
-        with open("offset_list_debug.acd", "wb") as offset_file_debug:
-            offset_file_debug.write(len(offset_list).to_bytes(byteorder="little", length=4))
-            for element in offset_list:
-                offset_file_debug.write(element.to_bytes(4, byteorder="little"))
-        print("Exporting debug offsets...")
-    
-    if EXPORT_OFFSETS == 1: # Exports found offsets to facilitate investigation
-        with open("offset_list_debug.acd", "wb") as offset_file_debug:
-            offset_file_debug.write(len(offset_list).to_bytes(byteorder="little", length=4))
-            for element in offset_list:
-                offset_file_debug.write(element.to_bytes(4, byteorder="little"))
-        print("Exporting debug offsets...")
 
         
     return
