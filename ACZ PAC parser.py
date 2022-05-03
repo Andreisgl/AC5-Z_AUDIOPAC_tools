@@ -71,6 +71,7 @@ def write_tbl_from_pac():
             tbl_file.write(len(offset_list).to_bytes(byteorder="little", length=4))
             for element in offset_list:
                 tbl_file.write(element.to_bytes(4, byteorder="little"))
+        print(in_file_list[i] + " done")
 
 
         
@@ -82,8 +83,11 @@ print(textwrap.fill("Ace Combat 5/Zero .PAC parser by Andrei Segal (Andrei_sgl@ 
 print(textwrap.fill("Adapted from death_the_d0g's (death_the_d0g @ Twitter) original ACZ BGM.PAC unpacker", width=80))
 print(textwrap.fill("===========================================================================", width=80))
 print()
-print("Creates a TBL.acd file for a given .PAC file (Only BGM and RADIO files supported).")
+print("Creates a TBL.acd file for a given .PAC file (Supports multiple files at once)\n")
+print("(ONLY BGM AND RADIO FILES SUPPORTED).")
 
 write_tbl_from_pac()
+
+input("All Files done! Press any key to continue...")
 
 exit()
