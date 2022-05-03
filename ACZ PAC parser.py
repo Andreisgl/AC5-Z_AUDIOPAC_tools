@@ -86,6 +86,9 @@ print()
 print("Creates a TBL.acd file for a given .PAC file (Supports multiple files at once)\n")
 print("(ONLY BGM AND RADIO FILES SUPPORTED).")
 
+print("\n\nPlace all .PAC files in ./WORK/IN and get all TBL's in ./WORK/OUT.")
+print("All non-PAC files and folders will be ignored!")
+
 write_tbl_from_pac()
 
 input("All Files done! Press any key to continue...")
