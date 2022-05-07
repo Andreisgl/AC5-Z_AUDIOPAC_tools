@@ -12,7 +12,9 @@ import shutil
 import textwrap
 
 
-
+BASE_FOLDER = "./PARSER"
+INPUT_FOLDER = BASE_FOLDER + "/" + "IN"
+OUTPUT_FOLDER = BASE_FOLDER + "/" + "OUT"
 
 
 def write_tbl_from_pac():
@@ -20,17 +22,23 @@ def write_tbl_from_pac():
 
     
 
-    BASE_FOLDER = "./WORK"
-    INPUT_FOLDER = BASE_FOLDER + "/" + "IN"
-    OUTPUT_FOLDER = BASE_FOLDER + "/" + "OUT"
+    
 
     if not os.path.exists(BASE_FOLDER):
             os.mkdir(BASE_FOLDER)
+
     if not os.path.exists(INPUT_FOLDER):
             os.mkdir(INPUT_FOLDER)
+            print ()
+            errormsg = "///ERROR///: INPUT folder does not exist!"
+            print (errormsg)
+            print ()
+            input("///INPUT///: Press any key to exit...")
+            exit(errormsg)
+
     if not os.path.exists(OUTPUT_FOLDER):
             os.mkdir(OUTPUT_FOLDER)
-
+            
     in_file_list = listdir(INPUT_FOLDER)
     for i in range(-len(in_file_list), 0):
         if not isfile(INPUT_FOLDER + "/" + in_file_list[i]):
@@ -83,10 +91,10 @@ print(textwrap.fill("Ace Combat 5/Zero .PAC parser by Andrei Segal (Andrei_sgl@ 
 print(textwrap.fill("Adapted from death_the_d0g's (death_the_d0g @ Twitter) original ACZ BGM.PAC unpacker", width=80))
 print(textwrap.fill("===========================================================================", width=80))
 print()
-print("Creates a TBL.acd file for a given .PAC file (Supports multiple files at once)\n")
+print("Creates a TBL.acd file for a given .PAC file (Supports multiple files at once!)\n")
 print("(ONLY BGM AND RADIO FILES SUPPORTED).")
 
-print("\n\nPlace all .PAC files in ./WORK/IN and get all TBL's in ./WORK/OUT.")
+print("\n\nPlace all .PAC files in " + INPUT_FOLDER + " and get all TBL's in " + OUTPUT_FOLDER)
 print("All non-PAC files and folders will be ignored!")
 
 write_tbl_from_pac()
