@@ -6,15 +6,64 @@
 ##TODO: clean this sorry mess of code.
 
 import os
+from os import listdir
+from os.path import isfile, join
+
+import pathlib
 import shutil
 import textwrap
 
+
+
+BASE_FOLDER = "./UNPACKER"
+PAC_IN_FOLDER = BASE_FOLDER + "/" + "PAC"
+TBL_IN_FOLDER = BASE_FOLDER + "/" + "TBL"
+OUTPUT_FOLDER = BASE_FOLDER + "/" + "OUT"
+
+RESULTING_FOLDER_NAME = ""
+
+ORIGINAL_PAC_NAME = ""
+ORIGINAL_TBL_NAME = ""
+
+#ORIGINAL_FILE_NAME = in_file_list[i] # Change this for fast debugging
+#RESULTING_FILE_NAME = pathlib.Path(in_file_list[i]).stem + "_TBL.acd"
+#ORIGINAL_FILE_NAME = INPUT_FOLDER + "/" + ORIGINAL_FILE_NAME
+#RESULTING_FILE_NAME = OUTPUT_FOLDER + "/" + RESULTING_FILE_NAME
+
+
+
+
+def find_files():
+    #Checks if only one file of each type is present
+    p = len(listdir(PAC_IN_FOLDER))
+    if len(listdir(PAC_IN_FOLDER)) > 1 or len(listdir(TBL_IN_FOLDER)) > 1:
+        error_msg = "Make sure to use only one .PAC and _TBL.acd file set at once!"
+        input(error_msg)
+        exit(error_msg)
+
+    pac_file_list = listdir(PAC_IN_FOLDER)
+    tbl_file_list = listdir(TBL_IN_FOLDER)
+
+    global ORIGINAL_PAC_NAME
+    global ORIGINAL_TBL_NAME
+    global RESULTING_FOLDER_NAME
+
+    ORIGINAL_PAC_NAME = PAC_IN_FOLDER + "/" + pac_file_list[0]
+    ORIGINAL_TBL_NAME = TBL_IN_FOLDER + "/" + tbl_file_list[0]
+    RESULTING_FOLDER_NAME = OUTPUT_FOLDER + "/" + pathlib.Path(pac_file_list[0]).stem + "/"
+    if not os.path.exists(OUTPUT_FOLDER):
+        os.mkdir(OUTPUT_FOLDER)
+    if not os.path.exists(RESULTING_FOLDER_NAME):
+        os.mkdir(RESULTING_FOLDER_NAME)
+
+    
+
 def tbl():
     try:
-        tbl_file = open("BGM_TBL.acd", "rb")
+        tbl_file = open(ORIGINAL_TBL_NAME, "rb")
     except FileNotFoundError as x:
         print ()
-        print ("///ERROR///: BGM_TBL.acd file not found.")
+        print ("///ERROR///: .acd file not found.")
         print ()
         a = input("///INPUT///: Press any key to exit...")
         if a:
@@ -26,10 +75,10 @@ def tbl():
 
 def pac():
     try:
-        pac_file = open("BGM.pac", "rb")
+        pac_file = open(ORIGINAL_PAC_NAME, "rb")
     except FileNotFoundError as x:
         print ()
-        print ("///ERROR///: BGM.pac file not found.")
+        print ("///ERROR///: .PAC file not found.")
         print ()
         a = input("///INPUT///: Press any key to exit...")
         if a:
@@ -52,10 +101,10 @@ def pac():
             return pac_file
 
 def extraction(tbl_file, pac_file):
-    if os.path.exists("BGM"):
-        shutil.rmtree("BGM")
-
-    os.mkdir("BGM")
+    #if os.path.exists("BGM"):
+    #    shutil.rmtree("BGM")
+    if not os.path.exists(RESULTING_FOLDER_NAME):
+        os.mkdir(RESULTING_FOLDER_NAME)
     
     print (textwrap.fill("///INFO///: Extracting files, please wait...", width = 72))
            
@@ -92,7 +141,7 @@ def extraction(tbl_file, pac_file):
         wut = d.replace("�", "")
         a = wut.replace(".wav", "")
         aif = a.replace(".aif", "")
-        fname = "BGM//" + str(f_n).zfill(6) + "_" + aif + ".npsf"
+        fname = RESULTING_FOLDER_NAME + str(f_n).zfill(6) + "_" + aif + ".npsf"
         file = open(fname, "wb")    #There is an 'invalid argument' going on here.
         file.write(data)
         print (f_size, fname)
@@ -101,10 +150,15 @@ def extraction(tbl_file, pac_file):
         f_n = f_n + 1
 
 print(textwrap.fill("Ace Combat Zero BGM.PAC unpacker by death_the_d0g (death_the_d0g @ Twitter)", width = 80))
+print(textwrap.fill("Further improvement by Andrei Segal (Andrei_sgl@ Github) and Luis Filipe Sales (luisfilipels @ GitHub)", width=80))
 print(textwrap.fill("===========================================================================", width = 80))
 print()
 print("Extracts the contents found inside ACZs BGM.PAC files.")
 
+#print("\n\nPlace all .PAC files in " + INPUT_FOLDER + " and get all TBL's in " + OUTPUT_FOLDER)
+#print("All non-PAC files and folders will be ignored!")
+
+find_files()
 tbl_file = tbl()
 pac_file = pac()
 extraction(tbl_file, pac_file)
