@@ -4,7 +4,7 @@
 ## original "BGMPAC" sripts for Ace Combat Zero
 ##===============================================================
 
-# This script extracts AUDIO.PAC files ("BGM.PAC" or "RADIOUSA.PAC")
+# This script extracts AUDIO.PAC files ("BGM.PAC", "RADIOUSA.PAC", "RADIOEE.PAC", "RADIOEJ.PAC")
 # into individual files in a folder.
 
 import os
