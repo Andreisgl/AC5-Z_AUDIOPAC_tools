@@ -11,18 +11,8 @@ import os
 import math
 import shutil
 
-# Data to support ACZ and AC5 modding
-SUPPORTED_GAMES = ['AC5', 'ACZ']
+import presets
 
-# Data to support different file types ("BGM" and "RADIO")
-PAC_TYPES = ['BGM', 'RADIO']
-
-POSSIBLE_PAC_NAMES_ACZ = [['BGM.PAC', PAC_TYPES[0]],
-                          ['RADIOUSA.PAC', PAC_TYPES[1]]]
-
-POSSIBLE_PAC_NAMES_AC5 = [['BGM.PAC', PAC_TYPES[0]],
-                          ['RADIOEE.PAC', PAC_TYPES[1]],
-                          ['RADIOEJ.PAC', PAC_TYPES[1]]]
 
 # Misc stuff
 INPUT_EXIT_MESSAGE = 'PRESS ENTER TO EXIT'
@@ -43,6 +33,10 @@ OUTPUT_AUDIOPAC_FOLDER = 'OUTPUT'
 
 def prepare_paths():
     # Prepares all paths needed for the script
+    global SUPPORTED_GAMES
+    global POSSIBLE_PAC_NAMES_ACZ
+    global POSSIBLE_PAC_NAMES_AC5
+
     global game
     global PAC_type
     global input_PAC_file_name
@@ -51,6 +45,11 @@ def prepare_paths():
     global BASEDIR_PATH
     global INPUT_AUDIOPAC_FOLDER
     global OUTPUT_AUDIOPAC_FOLDER
+
+    # Gets game and file names from module
+    SUPPORTED_GAMES = presets.SUPPORTED_GAMES
+    POSSIBLE_PAC_NAMES_ACZ = presets.POSSIBLE_PAC_NAMES_ACZ
+    POSSIBLE_PAC_NAMES_AC5 = presets.POSSIBLE_PAC_NAMES_AC5
 
     # Create important folders
     INPUT_AUDIOPAC_FOLDER = os.path.join(BASEDIR_PATH, INPUT_AUDIOPAC_FOLDER)
