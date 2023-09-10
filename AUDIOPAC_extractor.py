@@ -217,15 +217,19 @@ def split_audiopac(audiopac_path, output_folder, offset_tbl):
             end = aux.find(b'\x00') # Cut name at first b'\x00' found
             track_name = aux[:end]
 
-            # Add numeration to track names to keep the right order
+            # Add numeration prefix to track names to keep the right order
             prefix = str(index).zfill(number_of_digits) + '_'
             track_name = prefix + track_name.decode("utf-8")
+            # Change extension to ".npsf"
+            track_name = track_name.split('.')[0] + '.npsf'
+
             # Append [data, track_name] set to list
             track_data_list.append([data, track_name])
 
-    # Save
+    # Write track files into output
+    
 
-    pass
+    return track_data_list
 
 
 
@@ -244,7 +248,19 @@ def main():
     prepare_paths()
     
     offset_tbl = assemble_tbl(input_PAC_file_path)
-    split_audiopac(input_PAC_file_path, OUTPUT_AUDIOPAC_FOLDER, offset_tbl)
+    track_data = split_audiopac(input_PAC_file_path, OUTPUT_AUDIOPAC_FOLDER, offset_tbl)
+    pass
+    for track in track_data:
+        filename = track[1]
+        file_path = os.path.join(OUTPUT_AUDIOPAC_FOLDER, filename)
+
+        print(filename)
+        with open(file_path, 'wb') as file:
+            file.write(track[0])
+            pass
+
+
+
 
 
     pass
