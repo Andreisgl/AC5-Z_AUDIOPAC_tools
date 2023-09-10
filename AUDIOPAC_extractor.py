@@ -8,6 +8,7 @@
 # into individual files in a folder.
 
 import os
+import math
 
 # Data to support ACZ and AC5 modding
 SUPPORTED_GAMES = ['AC5', 'ACZ']
@@ -187,9 +188,9 @@ def split_audiopac(audiopac_path, output_folder, offset_tbl):
     # Assemble list with track sizes based on offset_tbl
     track_size_list = []
     file_size = os.path.getsize(audiopac_path)
-
     offset_tbl.append(file_size) # Append file size to list to help process
     tbl_last_index = len(offset_tbl)-1
+
     for index, offset in enumerate(offset_tbl):
         if index == tbl_last_index:
             break # Break loop if end is reached
@@ -197,26 +198,32 @@ def split_audiopac(audiopac_path, output_folder, offset_tbl):
         track_size_list.append(curr_size)
         print(curr_size)
     
+
     # Read AUDIOPAC file and split data into list based on sizes
     track_data_list = []
+    
+    # Calculate "last_file_index" and "number_of_digits" for filename prefix
+    last_file_index = len(track_size_list)-1
+    number_of_digits = math.floor(math.log10(last_file_index)+1)
+
     with open(audiopac_path, 'rb') as file:
-        for size in track_size_list:
+        for index, file_size in enumerate(track_size_list):
             # Raw track data
-            data = file.read(size)
+            data = file.read(file_size)
 
             # Get track name
-            track_name = ''
-
             start = 52 # Hardcoded. Name starts in index 52 of track
             aux = data[start:256] # End trim at a big enough index
             end = aux.find(b'\x00') # Cut name at first b'\x00' found
-            
-            track_name = track_name[:end]
+            track_name = aux[:end]
 
+            # Add numeration to track names to keep the right order
+            prefix = str(index).zfill(number_of_digits) + '_'
+            track_name = prefix + track_name.decode("utf-8")
             # Append [data, track_name] set to list
             track_data_list.append([data, track_name])
 
-    # 
+    # Save
 
     pass
 
