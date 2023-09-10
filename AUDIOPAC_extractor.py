@@ -239,7 +239,8 @@ def main():
 
     greeting_message = ('AUDIOPAC_extractor\n'
                         'This script extracts AUDIO.PAC files '
-                        '("BGM.PAC" or "RADIOUSA.PAC") into '
+                        '("BGM.PAC", "RADIOUSA.PAC", '
+                        '"RADIOEE.PAC", "RADIOEJ.PAC") into '
                         'individual files in a folder.'
                         )
     print(greeting_message)
