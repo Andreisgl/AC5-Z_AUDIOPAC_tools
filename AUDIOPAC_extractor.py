@@ -159,12 +159,33 @@ def choose_file_data():
 
     pass
 
-def split_audiopac(raw_data):
-    pass
+def assemble_tbl(audiopac_path):
+    # Assembles .TBL file for current AUDIOPAC file.
+    # Returns list with all track offsets.
+
+    tbl_size = os.path.getsize(audiopac_path)
+    offset_list = []
+    with open(audiopac_path, 'rb') as file:
+        raw_data = file.read()
+
+        # Every b'NPSF' marks the beginning of a new track.
+        current_header_index = -4 # Start at -4 so search starts at offset 0
+        track_offset_list = []
+        while current_header_index != -1:
+            current_header_index = raw_data.find(b'NPSF', current_header_index+4)
+            track_offset_list.append(current_header_index)
+            print('{} / {}'.format(current_header_index, tbl_size))
+        track_offset_list.pop() # Remove last, "-1", index.
+    
+    return track_offset_list
+
+    
+
 
 
 
 def main():
+    global input_PAC_file_path
     greeting_message = ('AUDIOPAC_extractor\n'
                         'This script extracts AUDIO.PAC files '
                         '("BGM.PAC" or "RADIOUSA.PAC") into '
@@ -174,8 +195,7 @@ def main():
 
     prepare_paths()
     
-    with open(input_PAC_file_path, 'rb') as file:
-        split_audiopac(file.read())
+    assemble_tbl(input_PAC_file_path)
 
 
     pass
