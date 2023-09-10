@@ -9,6 +9,7 @@
 
 import os
 import math
+import shutil
 
 # Data to support ACZ and AC5 modding
 SUPPORTED_GAMES = ['AC5', 'ACZ']
@@ -57,9 +58,10 @@ def prepare_paths():
         os.mkdir(INPUT_AUDIOPAC_FOLDER)
     
     OUTPUT_AUDIOPAC_FOLDER= os.path.join(BASEDIR_PATH, OUTPUT_AUDIOPAC_FOLDER)
-    if not os.path.exists(OUTPUT_AUDIOPAC_FOLDER):
-        os.mkdir(OUTPUT_AUDIOPAC_FOLDER)
-    
+    if os.path.exists(OUTPUT_AUDIOPAC_FOLDER):
+        # Delete dir if it exists. The folder shall always start empty
+        shutil.rmtree(OUTPUT_AUDIOPAC_FOLDER)
+    os.mkdir(OUTPUT_AUDIOPAC_FOLDER)
 
     choose_file_data() # Get filename data
 
@@ -161,7 +163,7 @@ def choose_file_data():
     pass
 
 
-def assemble_tbl(audiopac_path):
+def assemble_tbl_from_audiopac(audiopac_path):
     # Assembles .TBL file for a given AUDIOPAC file.
     # Returns list with all track offsets.
 
@@ -231,9 +233,6 @@ def split_audiopac(audiopac_path, output_folder, offset_tbl):
 
     return track_data_list
 
-
-
-
 def main():
     global input_PAC_file_path
     global OUTPUT_AUDIOPAC_FOLDER
@@ -247,7 +246,8 @@ def main():
 
     prepare_paths()
     
-    offset_tbl = assemble_tbl(input_PAC_file_path)
+    ### def extract_audiopac(input_PAC_file_path)
+    offset_tbl = assemble_tbl_from_audiopac(input_PAC_file_path)
     track_data = split_audiopac(input_PAC_file_path, OUTPUT_AUDIOPAC_FOLDER, offset_tbl)
     pass
     for track in track_data:
@@ -258,8 +258,8 @@ def main():
         with open(file_path, 'wb') as file:
             file.write(track[0])
             pass
-
-
+    
+    #######
 
 
 
