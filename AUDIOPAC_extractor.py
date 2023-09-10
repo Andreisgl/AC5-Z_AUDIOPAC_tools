@@ -159,11 +159,12 @@ def choose_file_data():
 
     pass
 
+
 def assemble_tbl(audiopac_path):
-    # Assembles .TBL file for current AUDIOPAC file.
+    # Assembles .TBL file for a given AUDIOPAC file.
     # Returns list with all track offsets.
 
-    tbl_size = os.path.getsize(audiopac_path)
+    file_size = os.path.getsize(audiopac_path)
     offset_list = []
     with open(audiopac_path, 'rb') as file:
         raw_data = file.read()
@@ -174,18 +175,58 @@ def assemble_tbl(audiopac_path):
         while current_header_index != -1:
             current_header_index = raw_data.find(b'NPSF', current_header_index+4)
             track_offset_list.append(current_header_index)
-            print('{} / {}'.format(current_header_index, tbl_size))
+            print('{} / {}'.format(current_header_index, file_size))
         track_offset_list.pop() # Remove last, "-1", index.
     
     return track_offset_list
 
+def split_audiopac(audiopac_path, output_folder, offset_tbl):
+    # Splits an AUDIOPAC file using its previously created offset table.
+    # Dumps extracted files into a given output folder.
+
+    # Assemble list with track sizes based on offset_tbl
+    track_size_list = []
+    file_size = os.path.getsize(audiopac_path)
+
+    offset_tbl.append(file_size) # Append file size to list to help process
+    tbl_last_index = len(offset_tbl)-1
+    for index, offset in enumerate(offset_tbl):
+        if index == tbl_last_index:
+            break # Break loop if end is reached
+        curr_size = offset_tbl[index+1] - offset_tbl[index]
+        track_size_list.append(curr_size)
+        print(curr_size)
     
+    # Read AUDIOPAC file and split data into list based on sizes
+    track_data_list = []
+    with open(audiopac_path, 'rb') as file:
+        for size in track_size_list:
+            # Raw track data
+            data = file.read(size)
+
+            # Get track name
+            track_name = ''
+
+            start = 52 # Hardcoded. Name starts in index 52 of track
+            aux = data[start:256] # End trim at a big enough index
+            end = aux.find(b'\x00') # Cut name at first b'\x00' found
+            
+            track_name = track_name[:end]
+
+            # Append [data, track_name] set to list
+            track_data_list.append([data, track_name])
+
+    # 
+
+    pass
 
 
 
 
 def main():
     global input_PAC_file_path
+    global OUTPUT_AUDIOPAC_FOLDER
+
     greeting_message = ('AUDIOPAC_extractor\n'
                         'This script extracts AUDIO.PAC files '
                         '("BGM.PAC" or "RADIOUSA.PAC") into '
@@ -195,7 +236,8 @@ def main():
 
     prepare_paths()
     
-    assemble_tbl(input_PAC_file_path)
+    offset_tbl = assemble_tbl(input_PAC_file_path)
+    split_audiopac(input_PAC_file_path, OUTPUT_AUDIOPAC_FOLDER, offset_tbl)
 
 
     pass
