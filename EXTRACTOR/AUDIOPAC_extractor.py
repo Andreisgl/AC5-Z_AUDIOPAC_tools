@@ -14,8 +14,6 @@ import shutil
 import math
 
 
-
- 
 # setting path
 sys.path.append('../bgm_pac_ace')
 from modules import presets
@@ -49,16 +47,16 @@ def prepare_paths():
 
     presets.choose_file_data() # Get filename data
 
-    if game == 'AC5': # Block AC5 from being used. Still unsupported.
-        input('Sorry! AC5 is currently not supported!\n{}'
-              .FORMAT(INPUT_EXIT_MESSAGE))
-        exit(1)
-
     # Gets game and file names from module
     game = presets.game
     PAC_type = presets.PAC_type
     input_PAC_file_name = presets.input_PAC_file_name
     #input_PAC_file_path
+
+    if game == 'AC5': # Block AC5 from being used. Still unsupported.
+        input('Sorry! AC5 is currently not supported!\n{}'
+              .FORMAT(INPUT_EXIT_MESSAGE))
+        exit(1)
     
 
     SUPPORTED_GAMES = presets.SUPPORTED_GAMES
