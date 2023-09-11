@@ -30,3 +30,9 @@ def export_tbl(offset_table, output_path):
             data = offset.to_bytes(4, 'little')
             file.write(data)
     pass
+
+def line_fill(curr_offset, line_size):
+    if curr_offset % line_size != 0:
+        return ((int(curr_offset/16) + 1) * 16) - curr_offset
+    else:
+        return 0
