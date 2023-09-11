@@ -8,21 +8,21 @@
 # into individual files in a folder.
 
 import os
-import math
+import sys
 import shutil
 
-import presets
+import math
+
+
+
+ 
+# setting path
+sys.path.append('../bgm_pac_ace')
+from modules import presets
 
 
 # Misc stuff
 INPUT_EXIT_MESSAGE = 'PRESS ENTER TO EXIT'
-
-# Current file data
-game = '' # Selected game
-PAC_type = '' # If the file is BGM or RADIO
-input_PAC_file_name = '' # File name, depends on the selected game
-input_PAC_file_path = '' # Path to AUDIOPAC file
-
 
 # Files and paths
 SCRIPT_PATH = __file__ # This script's path
@@ -46,7 +46,21 @@ def prepare_paths():
     global INPUT_AUDIOPAC_FOLDER
     global OUTPUT_AUDIOPAC_FOLDER
 
+
+    presets.choose_file_data() # Get filename data
+
+    if game == 'AC5': # Block AC5 from being used. Still unsupported.
+        input('Sorry! AC5 is currently not supported!\n{}'
+              .FORMAT(INPUT_EXIT_MESSAGE))
+        exit(1)
+
     # Gets game and file names from module
+    game = presets.game
+    PAC_type = presets.PAC_type
+    input_PAC_file_name = presets.input_PAC_file_name
+    #input_PAC_file_path
+    
+
     SUPPORTED_GAMES = presets.SUPPORTED_GAMES
     POSSIBLE_PAC_NAMES_ACZ = presets.POSSIBLE_PAC_NAMES_ACZ
     POSSIBLE_PAC_NAMES_AC5 = presets.POSSIBLE_PAC_NAMES_AC5
@@ -62,12 +76,7 @@ def prepare_paths():
         shutil.rmtree(OUTPUT_AUDIOPAC_FOLDER)
     os.mkdir(OUTPUT_AUDIOPAC_FOLDER)
 
-    choose_file_data() # Get filename data
-
-    if game == 'AC5': # Block AC5 from being used. Still unsupported.
-        input('Sorry! AC5 is currently not supported!\n{}'
-              .FORMAT(INPUT_EXIT_MESSAGE))
-        exit(1)
+    
     
     input_PAC_file_path = os.path.join(INPUT_AUDIOPAC_FOLDER,
                                        input_PAC_file_name)
@@ -80,86 +89,9 @@ def prepare_paths():
         exit(1)
  
 
-def prompt_user_list(option_list):
-    # This function creates a prompt to choose from a list.
-    # Handles invalid answers. Answer must be an index.
-    # Returns index
 
-    for index, entry in enumerate(option_list):
-        print('{} - {}'.format(index, entry))
-    print()
 
-    index_range = len(option_list)-1
-    valid_index = True
-    while True:
-        answer = ''
-        if not valid_index: # Cisplay error message accordig to flag
-            print('Input a valid index!')
 
-        try:
-            answer = int(input('Enter index: ')) # Receive answer
-        except ValueError:
-            valid_index = False # Set flag to false on invalidity
-            continue
-
-        if answer < 0 or answer > index_range:
-            valid_index = False # Set flag to false on invalidity
-            continue
-
-        break
-        
-    return answer
-
-def choose_file_data():
-    # Prompts user to choose file data
-    # Returns nothing. Global variables are updated instantly
-    global SUPPORTED_GAMES
-    global POSSIBLE_PAC_NAMES_ACZ
-    global POSSIBLE_PAC_NAMES_AC5
-
-    global game
-    global PAC_type
-    global input_PAC_file_name
-
-    print('Choose what game you want to work on:')
-    game_answer = prompt_user_list(SUPPORTED_GAMES)
-    
-
-    print('Choose what file you want to work on:')
-    match game_answer:
-        case 0:
-            # AC5
-            aux = [x[0] for x in POSSIBLE_PAC_NAMES_AC5] # Show only filenames
-            file_answer = prompt_user_list(aux)
-        case 1:
-            # ACZ
-            aux = [x[0] for x in POSSIBLE_PAC_NAMES_ACZ] # Show only filenames
-            file_answer = prompt_user_list(aux)
-
-    
-
-    # Assign answers to data
-    game = SUPPORTED_GAMES[game_answer]
-
-    match game_answer:
-        case 0:
-            name_result = POSSIBLE_PAC_NAMES_AC5[file_answer]
-        case 1:
-            name_result = POSSIBLE_PAC_NAMES_ACZ[file_answer]
-    
-    input_PAC_file_name = name_result[0]
-    PAC_type = name_result[1]
-
-    ### Remove later
-    if False: # Debug stuff
-        print('GAME ANSWER = {}\n{}\n'.format(game_answer, game))
-        print('FILE ANSWER = {}\n{}\n'.format(file_answer, input_PAC_file_name))
-        print('FILE TYPE = {}\n{}\n'.format(file_answer, PAC_type))
-    ###
-
-    
-
-    pass
 
 
 def assemble_tbl_from_audiopac(audiopac_path):
