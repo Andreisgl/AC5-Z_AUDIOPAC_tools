@@ -24,7 +24,7 @@ def assemble_tbl_from_audiopac(audiopac_path):
 
 def export_tbl(offset_table, output_path):
     # Exports a table to a file. Used for development purposes.
-    file_path = os.path.join(output_path, 'tbl.acd')
+    file_path = os.path.join(output_path, 'debug_tbl.acd')
     with open(file_path, 'wb') as file:
         for offset in offset_table:
             data = offset.to_bytes(4, 'little')
