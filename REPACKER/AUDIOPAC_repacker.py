@@ -36,8 +36,8 @@ def prepare_paths():
 
     global game
     global PAC_type
-    global input_PAC_file_name
-    global input_PAC_file_path
+    global output_PAC_file_name
+    global output_PAC_file_path
 
     global BASEDIR_PATH
     global INPUT_AUDIOPAC_FOLDER
@@ -49,7 +49,7 @@ def prepare_paths():
     # Gets game and file names from module
     game = presets.game
     PAC_type = presets.PAC_type
-    input_PAC_file_name = presets.input_PAC_file_name
+    output_PAC_file_name = presets.PAC_file_name
 
     if game == 'AC5': # Block AC5 from being used. Still unsupported.
         input('Sorry! AC5 is currently not supported!\n{}'
@@ -72,11 +72,12 @@ def prepare_paths():
         shutil.rmtree(OUTPUT_AUDIOPAC_FOLDER)
     os.mkdir(OUTPUT_AUDIOPAC_FOLDER)
  
-
+    output_PAC_file_path = os.path.join(OUTPUT_AUDIOPAC_FOLDER,
+                                       output_PAC_file_name)
 
 
 def main():
-    global input_PAC_file_path
+    global output_PAC_file_path
     global OUTPUT_AUDIOPAC_FOLDER
 
     greeting_message = ('AUDIOPAC_repacker\n'
