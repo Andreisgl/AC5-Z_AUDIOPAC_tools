@@ -27,6 +27,7 @@ OUTPUT_AUDIOPAC_FOLDER = 'OUTPUT'
 
 def prepare_paths():
     # Prepares all paths needed for the script
+    #region # Set global variables
     global SUPPORTED_GAMES
     global POSSIBLE_PAC_NAMES_ACZ
     global POSSIBLE_PAC_NAMES_AC5
@@ -39,7 +40,7 @@ def prepare_paths():
     global BASEDIR_PATH
     global INPUT_AUDIOPAC_FOLDER
     global OUTPUT_AUDIOPAC_FOLDER
-
+    #endregion
 
     presets.choose_file_data() # Get filename data
 
@@ -48,17 +49,20 @@ def prepare_paths():
     PAC_type = presets.PAC_type
     output_PAC_file_name = presets.PAC_file_name
 
+    #region AC5 abort
     if game == 'AC5': # Block AC5 from being used. Still unsupported.
         input('Sorry! AC5 is currently not supported!\n{}'
               .format(INPUT_EXIT_MESSAGE))
         exit(1)
-    
-
+    #endregion
+  
+    #region Get names from presets.py
     SUPPORTED_GAMES = presets.SUPPORTED_GAMES
     POSSIBLE_PAC_NAMES_ACZ = presets.POSSIBLE_PAC_NAMES_ACZ
     POSSIBLE_PAC_NAMES_AC5 = presets.POSSIBLE_PAC_NAMES_AC5
-
-    # Create important folders
+    #endregion
+    
+    #region Create important folders
     INPUT_AUDIOPAC_FOLDER = os.path.join(BASEDIR_PATH, INPUT_AUDIOPAC_FOLDER)
     if not os.path.exists(INPUT_AUDIOPAC_FOLDER):
         os.mkdir(INPUT_AUDIOPAC_FOLDER)
@@ -68,6 +72,8 @@ def prepare_paths():
         # Delete dir if it exists. The folder shall always start empty
         shutil.rmtree(OUTPUT_AUDIOPAC_FOLDER)
     os.mkdir(OUTPUT_AUDIOPAC_FOLDER)
+    #endregion
+    
  
     output_PAC_file_path = os.path.join(OUTPUT_AUDIOPAC_FOLDER,
                                        output_PAC_file_name)
