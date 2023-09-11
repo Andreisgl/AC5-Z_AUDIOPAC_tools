@@ -53,7 +53,7 @@ def prepare_paths():
 
     if game == 'AC5': # Block AC5 from being used. Still unsupported.
         input('Sorry! AC5 is currently not supported!\n{}'
-              .FORMAT(INPUT_EXIT_MESSAGE))
+              .format(INPUT_EXIT_MESSAGE))
         exit(1)
     
 
