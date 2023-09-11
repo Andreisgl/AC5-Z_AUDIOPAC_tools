@@ -125,8 +125,89 @@ def assemble_audiopac_file():
                 pac_file.write(track_file.read())
 
 def assemble_dat_file():
+    # Assemble .dat file based on the offset table
+    # How it works:
+    # The .dat files contain their own data, with the offset tbl in the middle
+    # For ACZ, the .dat for BGM is 0000.dat, for RADIO it is 0001.dat.
+    # In the DAT_DATA folders, the .dat is split in two:
+    # The data before the table, and the data after it.
+    # This method will stitch it all together:
+    # 0_acz_0000.dat - offset_tbl - 1_acz_0000.dat
+
+    #region # Set global variables
+    global game
+    global PAC_type
+    global OUTPUT_AUDIOPAC_FOLDER
+
+    global AC5_DAT_BGM_FOLDER
+    global AC5_DAT_RADIO_FOLDER
+    global ACZ_DAT_BGM_FOLDER
+    global ACZ_DAT_RADIO_FOLDER
+    #endregion
+
+    #region # Filenames for the .dats and parts
+    AC5_BGM_dat_parts_file_names = ['?.acd', '?.acd']
+    AC5_BGM_final_dat_file_name = '?.dat'
+    AC5_RADIO_dat_parts_file_names = ['?.acd', '?.acd']
+    AC5_RADIO_final_dat_file_name = '?.dat'
+
+    ACZ_BGM_dat_parts_file_names = ['0_acz_0000.acd', '1_acz_0000.acd']
+    ACZ_BGM_final_dat_file_name = '0000.dat'
+    ACZ_RADIO_dat_parts_file_names = ['0_acz_0001.acd', '1_acz_0001.acd']
+    ACZ_RADIO_final_dat_file_name = '0001.dat'
+    #endregion
+    
+    # Determine which files to use
+    cur_dat_parts_file_names = []
+    cur_final_dat_file_name = ''
+    cur_dat_parts_paths = []
+    cur_final_dat_path = ''
+    dat_folder_path = ''
+    #region
+    match game:
+        case 'AC5':
+            match PAC_type:
+                case 'BGM':
+                    cur_dat_parts_file_names = AC5_BGM_dat_parts_file_names
+                    cur_final_dat_file_name = AC5_BGM_final_dat_file_name
+                    dat_folder_path = AC5_DAT_BGM_FOLDER
+                case 'RADIO':
+                    cur_dat_parts_file_names = AC5_RADIO_dat_parts_file_names
+                    cur_final_dat_file_name = AC5_RADIO_final_dat_file_name
+                    dat_folder_path = AC5_DAT_RADIO_FOLDER
+
+        case 'ACZ':
+            match PAC_type:
+                case 'BGM':
+                    cur_dat_parts_file_names = ACZ_BGM_dat_parts_file_names
+                    cur_final_dat_file_name = ACZ_BGM_final_dat_file_name
+                    dat_folder_path = AC5_DAT_BGM_FOLDER
+                case 'RADIO':
+                    cur_dat_parts_file_names = ACZ_RADIO_dat_parts_file_names
+                    cur_final_dat_file_name = ACZ_RADIO_final_dat_file_name
+                    dat_folder_path = AC5_DAT_RADIO_FOLDER
+    #endregion
+
+    # Join paths for files
+    cur_dat_parts_paths = [os.path.join(dat_folder_path, x) for x in cur_dat_parts_file_names]
+    cur_final_dat_path = os.path.join(dat_folder_path, cur_final_dat_file_name)
+
+    # Assemble final file
     offset_table = pac_modules.assemble_tbl_from_audiopac(output_PAC_file_path)
-    pac_modules.export_tbl(offset_table, BASEDIR_PATH)
+    
+    with open(cur_final_dat_path, 'wb') as final_dat:
+        final_dat.write(cur_dat_parts_paths[0])
+        # Write table
+        # Convert int to bin and write
+        for offset in [x.to_bytes(4, 'little') for x in offset_table]:
+            final_dat.write(offset)
+
+        final_dat.write(cur_dat_parts_paths[1])
+    
+    pass
+    #pac_modules.export_tbl(offset_table, BASEDIR_PATH)
+
+    pass
 
 
     
