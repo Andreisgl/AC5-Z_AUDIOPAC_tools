@@ -75,6 +75,20 @@ def prepare_paths():
     output_PAC_file_path = os.path.join(OUTPUT_AUDIOPAC_FOLDER,
                                        output_PAC_file_name)
 
+def assemble_audiopac_file():
+    # Assembles output ADUIO.PAC file from "INPUT_AUDIOPAC_FOLDER"'s contents.
+    global output_PAC_file_path
+    global INPUT_AUDIOPAC_FOLDER
+
+    track_name_list = os.listdir(INPUT_AUDIOPAC_FOLDER)
+    track_path_list = [os.path.join(INPUT_AUDIOPAC_FOLDER, x)
+                       for x in track_name_list]
+
+    with open(output_PAC_file_path, 'wb') as pac_file:
+        for track in track_path_list:
+            with open(track, 'rb') as track_file:
+                pac_file.write(track_file.read())
+    pass
 
 def main():
     global output_PAC_file_path
@@ -89,6 +103,7 @@ def main():
 
     prepare_paths()
     
+    assemble_audiopac_file()
     
 
     #print('\nDone!')
