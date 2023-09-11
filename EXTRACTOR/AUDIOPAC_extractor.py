@@ -49,7 +49,7 @@ def prepare_paths():
     # Gets game and file names from module
     game = presets.game
     PAC_type = presets.PAC_type
-    input_PAC_file_name = presets.input_PAC_file_name
+    input_PAC_file_name = presets.PAC_file_name
     #input_PAC_file_path
 
     if game == 'AC5': # Block AC5 from being used. Still unsupported.

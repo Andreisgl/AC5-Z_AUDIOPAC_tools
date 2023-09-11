@@ -18,7 +18,7 @@ POSSIBLE_PAC_NAMES_AC5 = [['BGM.PAC', PAC_TYPES[0]],
 # Current file data
 game = '' # Selected game
 PAC_type = '' # If the file is BGM or RADIO
-input_PAC_file_name = '' # File name, depends on the selected game
+PAC_file_name = '' # File name, depends on the selected game
 input_PAC_file_path = '' # Path to AUDIOPAC file
 
 # Misc stuff
@@ -33,7 +33,7 @@ def choose_file_data():
 
     global game
     global PAC_type
-    global input_PAC_file_name
+    global PAC_file_name
 
     print('Choose what game you want to work on:')
     game_answer = prompt_user_list(SUPPORTED_GAMES)
@@ -61,13 +61,13 @@ def choose_file_data():
         case 1:
             name_result = POSSIBLE_PAC_NAMES_ACZ[file_answer]
     
-    input_PAC_file_name = name_result[0]
+    PAC_file_name = name_result[0]
     PAC_type = name_result[1]
 
     ### Remove later
     if False: # Debug stuff
         print('GAME ANSWER = {}\n{}\n'.format(game_answer, game))
-        print('FILE ANSWER = {}\n{}\n'.format(file_answer, input_PAC_file_name))
+        print('FILE ANSWER = {}\n{}\n'.format(file_answer, PAC_file_name))
         print('FILE TYPE = {}\n{}\n'.format(file_answer, PAC_type))
     ###
 
