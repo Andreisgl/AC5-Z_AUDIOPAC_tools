@@ -7,6 +7,9 @@
 # This script repacks extracted .npsf files into a single .PAC file
 
 import os
+import sys
 import shutil
 
-from .. import presets
+# setting path
+sys.path.append('../bgm_pac_ace')
+from modules import presets
