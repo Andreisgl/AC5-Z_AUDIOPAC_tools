@@ -9,7 +9,6 @@
 import os
 import sys
 import shutil
-
 # setting path
 sys.path.append('../bgm_pac_ace')
 from modules import presets

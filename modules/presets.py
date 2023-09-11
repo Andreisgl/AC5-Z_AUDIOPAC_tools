@@ -21,6 +21,8 @@ PAC_type = '' # If the file is BGM or RADIO
 input_PAC_file_name = '' # File name, depends on the selected game
 input_PAC_file_path = '' # Path to AUDIOPAC file
 
+# Misc stuff
+INPUT_EXIT_MESSAGE = 'PRESS ENTER TO EXIT'
 
 def choose_file_data():
     # Prompts user to choose file data

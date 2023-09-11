@@ -12,15 +12,13 @@ import sys
 import shutil
 
 import math
-
-
 # setting path
 sys.path.append('../bgm_pac_ace')
 from modules import presets
 
 
 # Misc stuff
-INPUT_EXIT_MESSAGE = 'PRESS ENTER TO EXIT'
+INPUT_EXIT_MESSAGE = presets.INPUT_EXIT_MESSAGE
 
 # Files and paths
 SCRIPT_PATH = __file__ # This script's path
