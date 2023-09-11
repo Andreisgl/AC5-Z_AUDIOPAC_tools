@@ -24,6 +24,7 @@ BASEDIR_PATH = os.path.dirname(SCRIPT_PATH) # The script's folder
 INPUT_AUDIOPAC_FOLDER = 'INPUT' # Dir where the input AUDIOPAC will stay
 OUTPUT_AUDIOPAC_FOLDER = 'OUTPUT'
 
+DAT_DATA_FOLDER_PATH = 'DAT_DATA'
 
 def prepare_paths():
     # Prepares all paths needed for the script
@@ -40,6 +41,17 @@ def prepare_paths():
     global BASEDIR_PATH
     global INPUT_AUDIOPAC_FOLDER
     global OUTPUT_AUDIOPAC_FOLDER
+
+    global DAT_DATA_FOLDER_PATH
+
+    # DAT_DATA PATHS
+    global AC5_DAT_FOLDER_PATH
+    global ACZ_DAT_FOLDER_PATH
+
+    global AC5_DAT_BGM_FOLDER
+    global AC5_DAT_RADIO_FOLDER
+    global ACZ_DAT_BGM_FOLDER
+    global ACZ_DAT_RADIO_FOLDER
     #endregion
 
     presets.choose_file_data() # Get filename data
@@ -62,21 +74,41 @@ def prepare_paths():
     POSSIBLE_PAC_NAMES_AC5 = presets.POSSIBLE_PAC_NAMES_AC5
     #endregion
     
-    #region Create important folders
+    #region Check/create important folders
+    # INPUT FOLDER
     INPUT_AUDIOPAC_FOLDER = os.path.join(BASEDIR_PATH, INPUT_AUDIOPAC_FOLDER)
     if not os.path.exists(INPUT_AUDIOPAC_FOLDER):
         os.mkdir(INPUT_AUDIOPAC_FOLDER)
     
+    # OUTPUT FOLDER
     OUTPUT_AUDIOPAC_FOLDER= os.path.join(BASEDIR_PATH, OUTPUT_AUDIOPAC_FOLDER)
     if os.path.exists(OUTPUT_AUDIOPAC_FOLDER):
         # Delete dir if it exists. The folder shall always start empty
         shutil.rmtree(OUTPUT_AUDIOPAC_FOLDER)
     os.mkdir(OUTPUT_AUDIOPAC_FOLDER)
+
+    # DAT_DATA FOLDERS
+    # These folders will contain the data from the dat files that contain the
+    # tbls required to read the tracks.
+    # e.g. ACZ: "0000.dat" for BGM table, "0001.dat" for RADIO table
+    DAT_DATA_FOLDER_PATH = os.path.join(BASEDIR_PATH, DAT_DATA_FOLDER_PATH)
+    AC5_DAT_FOLDER_PATH = os.path.join(DAT_DATA_FOLDER_PATH, SUPPORTED_GAMES[0])
+    ACZ_DAT_FOLDER_PATH = os.path.join(DAT_DATA_FOLDER_PATH, SUPPORTED_GAMES[1])
+    
+    # Subfolders
+    AC5_DAT_BGM_FOLDER = os.path.join(AC5_DAT_FOLDER_PATH, presets.PAC_TYPES[0])
+    AC5_DAT_RADIO_FOLDER = os.path.join(AC5_DAT_FOLDER_PATH, presets.PAC_TYPES[1])
+    ACZ_DAT_BGM_FOLDER = os.path.join(ACZ_DAT_FOLDER_PATH, presets.PAC_TYPES[0])
+    ACZ_DAT_RADIO_FOLDER = os.path.join(ACZ_DAT_FOLDER_PATH, presets.PAC_TYPES[1])
     #endregion
     
  
     output_PAC_file_path = os.path.join(OUTPUT_AUDIOPAC_FOLDER,
                                        output_PAC_file_name)
+    
+    pass
+    
+
 
 def assemble_audiopac_file():
     # Assembles output ADUIO.PAC file from "INPUT_AUDIOPAC_FOLDER"'s contents.
@@ -93,7 +125,10 @@ def assemble_audiopac_file():
                 pac_file.write(track_file.read())
 
 def assemble_dat_file():
-    pass
+    offset_list = pac_modules.assemble_tbl_from_audiopac(output_PAC_file_path)
+
+
+    
 
 def main():
     global output_PAC_file_path
@@ -109,7 +144,7 @@ def main():
     prepare_paths()
     
     assemble_audiopac_file()
-    aux = pac_modules.assemble_tbl_from_audiopac(output_PAC_file_path)
+    assemble_dat_file()
     
 
     #print('\nDone!')
