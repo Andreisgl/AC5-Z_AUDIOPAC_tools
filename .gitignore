@@ -1,12 +1,14 @@
 # Tool Specific files, directories and extensions:
-BGM/
+#BGM/
 *.PAC
 *.npsf
-*.acd
+#*.acd
 *.dat
 *.wav
 *.exe
 *.bat
+
+debug_tbl.acd
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
