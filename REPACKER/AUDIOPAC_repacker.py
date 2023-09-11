@@ -125,7 +125,8 @@ def assemble_audiopac_file():
                 pac_file.write(track_file.read())
 
 def assemble_dat_file():
-    offset_list = pac_modules.assemble_tbl_from_audiopac(output_PAC_file_path)
+    offset_table = pac_modules.assemble_tbl_from_audiopac(output_PAC_file_path)
+    pac_modules.export_tbl(offset_table, BASEDIR_PATH)
 
 
     

@@ -21,3 +21,12 @@ def assemble_tbl_from_audiopac(audiopac_path):
         track_offset_list.pop() # Remove last, "-1", index.
     
     return track_offset_list
+
+def export_tbl(offset_table, output_path):
+    # Exports a table to a file. Used for development purposes.
+    file_path = os.path.join(output_path, 'tbl.acd')
+    with open(file_path, 'wb') as file:
+        for offset in offset_table:
+            data = offset.to_bytes(4, 'little')
+            file.write(data)
+    pass
