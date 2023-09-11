@@ -15,9 +15,6 @@ from modules import presets
 from modules import pac_modules
 
 
-
-
-
 # Misc stuff
 INPUT_EXIT_MESSAGE = presets.INPUT_EXIT_MESSAGE
 
@@ -88,6 +85,8 @@ def assemble_audiopac_file():
         for track in track_path_list:
             with open(track, 'rb') as track_file:
                 pac_file.write(track_file.read())
+
+def assemble_dat_file():
     pass
 
 def main():
@@ -104,6 +103,7 @@ def main():
     prepare_paths()
     
     assemble_audiopac_file()
+    aux = pac_modules.assemble_tbl_from_audiopac(output_PAC_file_path)
     
 
     #print('\nDone!')
