@@ -4,7 +4,7 @@
 ## original "BGMPAC" sripts for Ace Combat Zero
 ##===============================================================
 
-# This script repacks extracted .npsf files into a single .PAC file
+# This script repacks unpacked .npsf files into a single .PAC file
 
 import os
 import sys
