@@ -236,8 +236,8 @@ def main():
     assemble_dat_file()
     
 
-    #print('\nDone!')
-    #input(INPUT_EXIT_MESSAGE)
+    print('\nDone!')
+    input(INPUT_EXIT_MESSAGE)
 
     pass
 
