@@ -181,33 +181,40 @@ def assemble_dat_file():
                 case 'BGM':
                     cur_dat_parts_file_names = ACZ_BGM_dat_parts_file_names
                     cur_final_dat_file_name = ACZ_BGM_final_dat_file_name
-                    dat_folder_path = AC5_DAT_BGM_FOLDER
+                    dat_folder_path = ACZ_DAT_BGM_FOLDER
                 case 'RADIO':
                     cur_dat_parts_file_names = ACZ_RADIO_dat_parts_file_names
                     cur_final_dat_file_name = ACZ_RADIO_final_dat_file_name
-                    dat_folder_path = AC5_DAT_RADIO_FOLDER
+                    dat_folder_path = ACZ_DAT_RADIO_FOLDER
     #endregion
 
     # Join paths for files
     cur_dat_parts_paths = [os.path.join(dat_folder_path, x) for x in cur_dat_parts_file_names]
-    cur_final_dat_path = os.path.join(dat_folder_path, cur_final_dat_file_name)
+    cur_final_dat_path = os.path.join(OUTPUT_AUDIOPAC_FOLDER, cur_final_dat_file_name)
 
     # Assemble final file
-    offset_table = pac_modules.assemble_tbl_from_audiopac(output_PAC_file_path)
-    
     with open(cur_final_dat_path, 'wb') as final_dat:
-        final_dat.write(cur_dat_parts_paths[0])
+        # Write first part of dat
+        with open(cur_dat_parts_paths[0], 'rb') as acd0:
+            final_dat.write(acd0.read())
+
         # Write table
         # Convert int to bin and write
+        offset_table = pac_modules.assemble_tbl_from_audiopac(output_PAC_file_path)
         for offset in [x.to_bytes(4, 'little') for x in offset_table]:
             final_dat.write(offset)
-
-        final_dat.write(cur_dat_parts_paths[1])
+        
+        # How many bytes to add to finish line. Line lenght is 16 bytes
+        # Padding bytes are "b'x\00'"
+        padding_len = pac_modules.line_fill(final_dat.tell(), 16)
+        for bt in range(padding_len):
+            final_dat.write(b'\x00')
+        
+        # Write second part of dat
+        with open(cur_dat_parts_paths[1], 'rb') as acd1:
+            final_dat.write(acd1.read())
     
-    pass
     #pac_modules.export_tbl(offset_table, BASEDIR_PATH)
-
-    pass
 
 
     
