@@ -1,4 +1,4 @@
-## AUDIOPAC_extractor by Truc3 (Andreisgl @ Github, @truc3_8492 @ Twitter)
+## AUDIOPAC_unpacker by Truc3 (Andreisgl @ Github, @truc3_8492 @ Twitter)
 ## Aid by Luis Filipe Sales (luisfilipels @ GitHub)
 ## Based on death_the_d0g's (deaththed0g @ Github, death_the_d0g @ Twitter)
 ## original "BGMPAC" sripts for Ace Combat Zero
@@ -139,7 +139,7 @@ def main():
     global input_PAC_file_path
     global OUTPUT_AUDIOPAC_FOLDER
 
-    greeting_message = ('AUDIOPAC_extractor\n'
+    greeting_message = ('AUDIOPAC_unpacker\n'
                         'This script extracts AUDIO.PAC files '
                         '("BGM.PAC", "RADIOUSA.PAC", '
                         '"RADIOEE.PAC", "RADIOEJ.PAC") into '
