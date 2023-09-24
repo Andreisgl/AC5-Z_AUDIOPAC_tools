@@ -21,6 +21,7 @@ INPUT_EXIT_MESSAGE = presets.INPUT_EXIT_MESSAGE
 # Files and paths
 SCRIPT_PATH = __file__ # This script's path
 BASEDIR_PATH = os.path.dirname(SCRIPT_PATH) # The script's folder
+WORK_FOLDER = '2_REPACKER' # Where the files will stay
 INPUT_AUDIOPAC_FOLDER = 'INPUT' # Dir where the input AUDIOPAC will stay
 OUTPUT_AUDIOPAC_FOLDER = 'OUTPUT'
 
@@ -39,6 +40,7 @@ def prepare_paths():
     global output_PAC_file_path
 
     global BASEDIR_PATH
+    global WORK_FOLDER
     global INPUT_AUDIOPAC_FOLDER
     global OUTPUT_AUDIOPAC_FOLDER
 
@@ -74,14 +76,19 @@ def prepare_paths():
     POSSIBLE_PAC_NAMES_AC5 = presets.POSSIBLE_PAC_NAMES_AC5
     #endregion
     
-    #region Check/create important folders
+    #region # Check/create important folders
+    # WORK FOLDER
+    WORK_FOLDER = os.path.join(BASEDIR_PATH, WORK_FOLDER)
+    if not os.path.exists(WORK_FOLDER):
+        os.mkdir(WORK_FOLDER)
+
     # INPUT FOLDER
-    INPUT_AUDIOPAC_FOLDER = os.path.join(BASEDIR_PATH, INPUT_AUDIOPAC_FOLDER)
+    INPUT_AUDIOPAC_FOLDER = os.path.join(WORK_FOLDER, INPUT_AUDIOPAC_FOLDER)
     if not os.path.exists(INPUT_AUDIOPAC_FOLDER):
         os.mkdir(INPUT_AUDIOPAC_FOLDER)
     
     # OUTPUT FOLDER
-    OUTPUT_AUDIOPAC_FOLDER= os.path.join(BASEDIR_PATH, OUTPUT_AUDIOPAC_FOLDER)
+    OUTPUT_AUDIOPAC_FOLDER= os.path.join(WORK_FOLDER, OUTPUT_AUDIOPAC_FOLDER)
     if os.path.exists(OUTPUT_AUDIOPAC_FOLDER):
         # Delete dir if it exists. The folder shall always start empty
         shutil.rmtree(OUTPUT_AUDIOPAC_FOLDER)
@@ -91,7 +98,7 @@ def prepare_paths():
     # These folders will contain the data from the dat files that contain the
     # tbls required to read the tracks.
     # e.g. ACZ: "0000.dat" for BGM table, "0001.dat" for RADIO table
-    DAT_DATA_FOLDER_PATH = os.path.join(BASEDIR_PATH, DAT_DATA_FOLDER_PATH)
+    DAT_DATA_FOLDER_PATH = os.path.join(WORK_FOLDER, DAT_DATA_FOLDER_PATH)
     AC5_DAT_FOLDER_PATH = os.path.join(DAT_DATA_FOLDER_PATH, SUPPORTED_GAMES[0])
     ACZ_DAT_FOLDER_PATH = os.path.join(DAT_DATA_FOLDER_PATH, SUPPORTED_GAMES[1])
     
