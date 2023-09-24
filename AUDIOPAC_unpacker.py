@@ -12,8 +12,7 @@ import sys
 import shutil
 
 import math
-# setting path
-sys.path.append('../bgm_pac_ace')
+
 from modules import presets
 from modules import pac_modules
 
@@ -24,6 +23,7 @@ INPUT_EXIT_MESSAGE = presets.INPUT_EXIT_MESSAGE
 # Files and paths
 SCRIPT_PATH = __file__ # This script's path
 BASEDIR_PATH = os.path.dirname(SCRIPT_PATH) # The script's folder
+WORK_FOLDER = '1_UNPACKER' # Where the files will stay
 INPUT_AUDIOPAC_FOLDER = 'INPUT' # Dir where the input AUDIOPAC will stay
 OUTPUT_AUDIOPAC_FOLDER = 'OUTPUT'
 
@@ -40,6 +40,7 @@ def prepare_paths():
     global input_PAC_file_path
 
     global BASEDIR_PATH
+    global WORK_FOLDER
     global INPUT_AUDIOPAC_FOLDER
     global OUTPUT_AUDIOPAC_FOLDER
 
@@ -63,11 +64,15 @@ def prepare_paths():
     POSSIBLE_PAC_NAMES_AC5 = presets.POSSIBLE_PAC_NAMES_AC5
 
     # Create important folders
-    INPUT_AUDIOPAC_FOLDER = os.path.join(BASEDIR_PATH, INPUT_AUDIOPAC_FOLDER)
+    WORK_FOLDER = os.path.join(BASEDIR_PATH, WORK_FOLDER)
+    if not os.path.exists(WORK_FOLDER):
+        os.mkdir(WORK_FOLDER)
+    
+    INPUT_AUDIOPAC_FOLDER = os.path.join(WORK_FOLDER, INPUT_AUDIOPAC_FOLDER)
     if not os.path.exists(INPUT_AUDIOPAC_FOLDER):
         os.mkdir(INPUT_AUDIOPAC_FOLDER)
     
-    OUTPUT_AUDIOPAC_FOLDER= os.path.join(BASEDIR_PATH, OUTPUT_AUDIOPAC_FOLDER)
+    OUTPUT_AUDIOPAC_FOLDER= os.path.join(WORK_FOLDER, OUTPUT_AUDIOPAC_FOLDER)
     if os.path.exists(OUTPUT_AUDIOPAC_FOLDER):
         # Delete dir if it exists. The folder shall always start empty
         shutil.rmtree(OUTPUT_AUDIOPAC_FOLDER)
